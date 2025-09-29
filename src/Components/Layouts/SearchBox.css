@@ -1,0 +1,276 @@
+/* =========================================
+   Глобальні налаштування
+========================================= */
+.text, .search-box, .search-box * {
+  font-family: "Nunito Sans", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 22px;
+  color: var(--color-black);
+  box-sizing: border-box;
+}
+
+.search-box input::placeholder {
+  color: var(--color-black);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 22px;
+  opacity: 1;
+}
+
+/* =========================================
+   Контейнер пошуку
+   (фонова панель окремо для hover)
+========================================= */
+.search-box {
+  position: relative;
+  width: 100%;
+  max-width: 1104px;
+  height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.search-box-bg {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: var(--color-white);
+  border: 1px solid var(--color-stroke);
+  border-radius: 60px;
+  box-shadow: 0 1px 8px rgba(0,0,0,0.08), 0 4px 69px rgba(0,0,0,0.05);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  z-index: 0;
+}
+
+.search-box:hover .search-box-bg {
+  box-shadow: 2px 4px 6px rgba(0,0,0,0.2);
+}
+
+.search-section {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  max-width: 1100px;
+  gap: 0;
+  z-index: 1; /* поверх фону */
+}
+
+/* =========================================
+   Секції пошуку
+========================================= */
+.search-item {
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+  height: 100%;
+  position: relative;
+  min-width: 0;
+}
+
+.search-item + .search-item {
+  border-left: 1px solid var(--color-stroke);
+}
+
+.search-item.submit {
+  border-left: none;
+  padding-left: 12px;
+}
+
+/* Ширини та відступи */
+.search-item.destination { flex: 3; min-width: 200px; gap: 12px; }
+.search-item.dates       { flex: 3; min-width: 260px; gap: 8px; }
+.search-item.guests      { flex: 4; min-width: 280px; gap: 12px; }
+
+/* =========================================
+   Іконки
+========================================= */
+.icon {
+  width: 20px;
+  height: 20px;
+  margin-right: 12px;
+  display: inline-block;
+  flex-shrink: 0;
+}
+
+/* =========================================
+   Inputs та плейсхолдери
+========================================= */
+.search-item input,
+.date-input,
+.date-display {
+  border: none;
+  outline: none;
+  background: transparent;
+  width: 100%;
+}
+
+.date-display {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  padding: 6px 0;
+  color: var(--color-black);
+  background: transparent;
+  border: none;
+}
+
+/* =========================================
+   React-datepicker
+========================================= */
+.react-datepicker-wrapper,
+.react-datepicker__input-container input {
+  border: none;
+  outline: none;
+  background: transparent;
+  font-size: 16px;
+  width: 100%;
+  padding: 0;
+}
+
+.react-datepicker {
+  font-family: "Nunito Sans", sans-serif;
+  font-size: 16px;
+  color: var(--color-black);
+  background: var(--color-white);
+  border: 1px solid var(--color-stroke);
+  border-radius: 12px;
+  padding: 8px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+}
+
+.react-datepicker__header {
+  background-color: var(--color-white);
+  border-bottom: 1px solid var(--color-stroke);
+}
+
+.react-datepicker__day-name,
+.react-datepicker__day,
+.react-datepicker__time-name {
+  color: var(--color-black);
+}
+
+.react-datepicker__day--selected,
+.react-datepicker__day--in-selecting-range,
+.react-datepicker__day--in-range,
+.react-datepicker__day--keyboard-selected {
+  background-color: var(--color-highlight) !important;
+  color: var(--color-white) !important;
+}
+
+.react-datepicker__close-icon::after {
+  background-color: var(--color-highlight);
+}
+
+/* =========================================
+   Guests / Rooms popup
+========================================= */
+.guest-summary {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  cursor: pointer;
+}
+
+.guest-count {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  white-space: nowrap;
+  color: var(--color-black);
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--color-black);
+  display: inline-block;
+}
+
+.arrow {
+  width: 12px;
+  height: 12px;
+  display: inline-block;
+}
+
+.guest-popup {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  min-width: 280px;
+  background: var(--color-white);
+  border: 1px solid var(--color-stroke);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+  border-radius: 12px;
+  padding: 16px;
+  z-index: 999;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.guest-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.guest-row span {
+  font-size: 16px;
+  color: var(--color-black);
+}
+
+.guest-row div {
+  display: flex;
+  align-items: center;
+  gap: 12px; 
+}
+
+.guest-row button {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: none;
+  background: var(--color-button);
+  color: var(--color-white);
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.guest-row button:disabled {
+  background: var(--color-stroke);
+  cursor: not-allowed;
+}
+
+.count {
+  min-width: 32px;
+  text-align: center;
+  font-size: 16px;
+  color: var(--color-black);
+}
+
+/* =========================================
+   Submit / search icon
+========================================= */
+.search-icon {
+  width: 68px;
+  height: 68px;
+  border: none;
+  position: absolute;
+  right: 0px;
+  background: url("../../../public/icons/searchBox__imgs/search.svg") no-repeat center;
+  background-size: contain;
+  cursor: pointer;
+  transition: transform 0.15s ease-in-out;
+}
+
+.search-icon:hover {
+  transform: scale(1.1);
+}
+
+.search-icon:active {
+  transform: scale(1);
+}

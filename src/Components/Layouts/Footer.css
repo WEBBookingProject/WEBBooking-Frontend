@@ -1,0 +1,37 @@
+/* =========================================
+   Footer
+========================================= */
+.footer {
+  width: 100%;
+  min-height: 500px;
+  background: var(--color-white);
+  border-top: 1px solid var(--color-stroke);
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 40px 0;
+  box-sizing: border-box;
+}
+
+/* Центральний контейнер для колонок */
+.central-container {
+  display: flex;
+  justify-content: space-between;
+  width: 80%;
+  max-width: 1200px;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+/* Кожна колонка футера */
+.footer-column {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  font-family: 'Nunito Sans', sans-serif;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 24px;
+  color: var(--color-gray);
+  min-width: 150px;
+}
