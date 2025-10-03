@@ -1,14 +1,11 @@
-/* Загальні стилі App */
 .App {
   text-align: center;
 }
 
-/* Лінки */
 .App-link {
   color: var(--color-highlight);
 }
 
-/* Мінімальні анімації (за бажанням можна прибрати) */
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

@@ -1,0 +1,54 @@
+/* ============================================ */
+/* Файл: src/components/ui/RegisterCTA.css      */
+/* ============================================ */
+
+/* --- Головний контейнер CTA --- */
+.register-cta {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px; 
+  margin: 48px auto;
+  transition: transform 0.2s ease;
+  cursor: pointer; 
+}
+
+/* --- Ефект збільшення при наведенні --- */
+.register-cta:hover {
+  transform: scale(1.05); 
+}
+
+/* --- Іконки по боках кнопки --- */
+.register-cta .cta-icon {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+
+/* --- Основна кнопка реєстрації --- */
+.register-cta .cta-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 256px;
+  height: 64px;
+  padding: 10px;
+  gap: 10px;
+  background: var(--color-button);
+  color: var(--color-white);
+  font-family: 'Nunito Sans', sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 22px;
+  border: none;
+  border-radius: 60px;
+  box-shadow: 0px 0px 10px rgba(88, 26, 219, 0.35),
+              0px 0px 43px rgba(88, 26, 219, 0.37);
+  transition: box-shadow 0.2s ease;
+}
+
+/* --- Зміна тіні кнопки при наведенні --- */
+.register-cta:hover .cta-button {
+  box-shadow: 0px 0px 15px rgba(88, 26, 219, 0.35),
+              0px 0px 50px rgba(88, 26, 219, 0.37);
+}

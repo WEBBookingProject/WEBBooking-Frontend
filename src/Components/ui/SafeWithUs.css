@@ -1,0 +1,72 @@
+/* ============================================ */
+/* Файл: src/components/ui/SafeWithUs.css      */
+/* Призначення: стилізація панелі "Safe with us" */
+/* ============================================ */
+
+.safe-panel {
+  margin-top: 48px;
+  text-align: center;
+  font-family: 'Nunito Sans', sans-serif;
+}
+
+/* --- Заголовок панелі --- */
+.safe-panel .safe-title {
+  font-weight: 400;
+  font-size: 16px;
+  color: var(--color-gray);
+  text-transform: uppercase;
+  margin-bottom: 32px;
+}
+
+/* --- Контейнер з елементами безпеки --- */
+.safe-panel .safe-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(208px, 1fr));
+  gap: 24px;
+  max-width: 1200px;  
+  width: 100%;
+  margin: 0 auto; 
+  justify-items: center;
+}
+
+/* --- Окрема "картка" безпеки --- */
+.safe-panel .safe-card {
+  width: 208px;
+  height: 208px;
+  border: 1px solid var(--color-stroke);
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 24px; 
+  background-color: var(--color-white);
+}
+
+/* --- Іконка всередині картки --- */
+.safe-panel .safe-icon {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+
+/* --- Текст всередині картки --- */
+.safe-panel .safe-text {
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--color-gray);
+  text-align: center;
+  margin: 5px;
+}
+
+
+.safe-card:hover .safe-icon {
+  filter: brightness(0.9);
+  transform: scale(1.05);
+}
+
+.safe-card:hover .safe-text {
+  font-weight: 300;
+  color: var(--color-gray-dark, #333);
+  text-shadow: 0 4px 4px rgba(0,0,0,0.25);
+}

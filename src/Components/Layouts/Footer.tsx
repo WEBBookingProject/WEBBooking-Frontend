@@ -1,10 +1,14 @@
+// ============================================
+// Файл: src/components/layouts/Footer.tsx
+// Компонент: Footer
+// Використовується: на MainLayout
+// ============================================
 import "./Footer.css";
 
 export default function Footer() {
   return (
     <footer className="footer">
       <div className="central-container">
-
         <div className="footer-column">
           <span>Countries</span>
           <span>Regions</span>
@@ -60,7 +64,6 @@ export default function Footer() {
           <span>Corporate contact</span>
           <span>We Price Match</span>
         </div>
-
       </div>
     </footer>
   );

@@ -1,0 +1,126 @@
+[
+  {
+    "name": "Hotel Riviera",
+    "city": "Barcelona",
+    "country": "Spain",
+    "rating": 4.5,
+    "distance_to_center_km": 1.2,
+    "price_per_night": 120,
+    "type": "Hotel",
+    "category": "Luxury",
+    "facilities": ["Kitchen", "WiFi", "Parking"],
+    "images": ["../icons/test/Rectangle 10.svg","../icons/test/Rectangle 11.svg","../icons/test/Rectangle 6.svg"],
+    "mainImage": "../icons/test/Rectangle 10.svg",
+    "description": "Located in the heart of Kiev, our hotel offers a prime location for exploring the city's rich history and culture...."
+  },
+  {
+    "name": "Grand Palace Hotel",
+    "city": "Vienna",
+    "country": "Austria",
+    "rating": 5,
+    "distance_to_center_km": 0.5,
+    "price_per_night": 200,
+    "type": "Hotel",
+    "category": "Business",
+    "facilities": ["WiFi", "Parking"],
+    "images": ["../icons/test/Rectangle 12.svg","../icons/test/Rectangle 13.svg","../icons/test/Rectangle 10.svg"],
+    "mainImage": "../icons/test/Rectangle 12.svg",
+    "description": "Located in the heart of Kiev, our hotel offers a prime location for exploring the city's rich history and culture...."
+  },
+  {
+    "name": "Seaside Resort",
+    "city": "Nice",
+    "country": "France",
+    "rating": 9.5,
+    "distance_to_center_km": 3.4,
+    "price_per_night": 95,
+    "type": "Apartment",
+    "category": "Budget",
+    "facilities": ["WiFi", "Free WiFi"],
+    "images": ["../icons/test/Rectangle 7.svg","../icons/test/Rectangle 8.svg","../icons/test/Rectangle 9.svg"],
+    "mainImage": "../icons/test/Rectangle 7.svg",
+    "description": "Located in the heart of Kiev, our hotel offers a prime location for exploring the city's rich history and culture...."
+  },
+  {
+    "name": "Skyline Inn",
+    "city": "New York",
+    "country": "USA",
+    "rating": 3.8,
+    "distance_to_center_km": 2.1,
+    "price_per_night": 150,
+    "type": "Hostel",
+    "category": "Business",
+    "facilities": ["Kitchen", "WiFi"],
+    "images": ["../icons/test/Rectangle 9.svg","../icons/test/Rectangle 10.svg","../icons/test/Rectangle 11.svg"],
+    "mainImage": "../icons/test/Rectangle 9.svg",
+    "description": "Located in the heart of Kiev, our hotel offers a prime location for exploring the city's rich history and culture...."
+  },
+  {
+    "name": "Mountain View Lodge",
+    "city": "Zurich",
+    "country": "Switzerland",
+    "rating": 4.7,
+    "distance_to_center_km": 5.6,
+    "price_per_night": 180,
+    "type": "Hotel",
+    "category": "Luxury",
+    "facilities": ["Kitchen", "WiFi", "Parking"],
+    "images": ["../icons/test/Rectangle 6.svg","../icons/test/Rectangle 8.svg","../icons/test/Rectangle 9.svg"],
+    "mainImage": "../icons/test/Rectangle 6.svg",
+    "description": "Located in the heart of Kiev, our hotel offers a prime location for exploring the city's rich history and culture...."
+  },
+  {
+    "name": "Sunset Boutique",
+    "city": "Santorini",
+    "country": "Greece",
+    "rating": 9.0,
+    "distance_to_center_km": 0.9,
+    "price_per_night": 250,
+    "type": "Apartment",
+    "category": "Luxury",
+    "facilities": ["WiFi", "Free WiFi", "Parking"],
+    "images": ["../icons/test/Rectangle 12.svg","../icons/test/Rectangle 13.svg","../icons/test/Rectangle 9.svg"],
+    "mainImage": "../icons/test/Rectangle 12.svg",
+    "description": "Located in the heart of Kiev, our hotel offers a prime location for exploring the city's rich history and culture...."
+  },
+  {
+    "name": "Royal Garden Hotel",
+    "city": "London",
+    "country": "UK",
+    "rating": 4.3,
+    "distance_to_center_km": 1.8,
+    "price_per_night": 160,
+    "type": "Hotel",
+    "category": "Family",
+    "facilities": ["WiFi", "Parking"],
+    "images": ["../icons/test/Rectangle 7.svg","../icons/test/Rectangle 8.svg","../icons/test/Rectangle 9.svg"],
+    "mainImage": "../icons/test/Rectangle 7.svg",
+    "description": "Located in the heart of Kiev, our hotel offers a prime location for exploring the city's rich history and culture...."
+  },
+  {
+    "name": "Laguna Bay Resort",
+    "city": "Phuket",
+    "country": "Thailand",
+    "rating": 8.6,
+    "distance_to_center_km": 7.2,
+    "price_per_night": 110,
+    "type": "Apartment",
+    "category": "Family",
+    "facilities": ["WiFi", "Parking"],
+    "images": [
+      "../icons/test/Rectangle 11.svg",
+      "../icons/test/Rectangle 8.svg",
+      "../icons/test/Rectangle 9.svg"
+    ],
+    "mainImage": "../icons/test/Rectangle 11.svg",
+    "description": "Located in the heart of Kiev, our hotel offers a prime location for exploring the city's rich history and culture...."
+  }
+]
+
+
+
+
+
+
+
+

@@ -1,16 +1,22 @@
-import './App.css';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import Home from './Components/Pages/Home';
-import PlaceholderPage from './Components/Pages/PlaceholderPage';
+import "./App.css";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Home from "./components/pages/Home";
+import PlaceholderPage from "./components/pages/PlaceholderPage";
+import Search from "./components/pages/Search";
 
 function App() {
   return (
-     <BrowserRouter>
+    <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/register" element={<PlaceholderPage title="Register" />} />
+        <Route
+          path="/register"
+          element={<PlaceholderPage title="Register" />}
+        />
         <Route path="/signin" element={<PlaceholderPage title="Sign In" />} />
-        <Route path="/search" element={<PlaceholderPage title="Search" />} />
+        <Route path="/search" element={<Search />} />
+        <Route path="/hotel" element={<PlaceholderPage title="Hotel page" />} />
+        <Route path="/map" element={<PlaceholderPage title="Map page" />} />
       </Routes>
     </BrowserRouter>
   );
