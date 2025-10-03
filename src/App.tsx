@@ -1,8 +1,8 @@
 import "./App.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Home from "./components/pages/Home";
-import PlaceholderPage from "./components/pages/PlaceholderPage";
-import Search from "./components/pages/Search";
+import Home from "./components1/pages1/Home";
+import PlaceholderPage from "./components1/pages1/PlaceholderPage";
+import Search from "./components1/pages1/Search";
 
 function App() {
   return (

@@ -7,7 +7,7 @@
 
 import React, { JSX, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import MainLayout from "../layouts/MainLayout";
+import MainLayout from "../layouts1/MainLayout";
 import "./Home.css";
 import { getHotels } from "../../services/hotelService";
 import { getComments } from "../../services/commentService";
