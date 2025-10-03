@@ -5,7 +5,7 @@
 /* ============================================ */
 
 import React, { JSX } from "react";
-import MainLayout from "../layouts1/MainLayout";
+import MainLayout from "../layouts/MainLayout";
 import ContentFeaturePanel, {
   FeatureItemData,
 } from "../ui/ContentFeaturePanel";
