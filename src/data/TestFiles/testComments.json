@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "avatarUrl": "/icons/test/user.svg",
+    "name": "Alice",
+    "hotelName": "Hotel Riviera",
+    "daysAgo": 2,
+    "text": "Lorem ipsum dolor sit amet consectetur. Viverra ultricies enim interdum fermentu tor. Facilisis nulla eun. Ac netus tincidunt arcu er sed."
+  },
+  {
+    "id": 2,
+    "avatarUrl": "/icons/test/user.svg",
+    "name": "Bob",
+    "hotelName": "Sunset Inn",
+    "daysAgo": 5,
+    "text": "Lorem ipsum dolor sit amet consectetur.  Facilisis nulla eun. Ac netus tincidunt sed."
+  },
+  {
+    "id": 3,
+    "avatarUrl": "/icons/test/user.svg",
+    "name": "Charlie",
+    "hotelName": "Mountain Retreat",
+    "daysAgo": 1,
+    "text": "Viverra ultricies enim interdum fermentu tor. Facilisis nulla eun. Ac netus tincidunt."
+  }
+]

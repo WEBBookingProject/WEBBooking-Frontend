@@ -1,0 +1,37 @@
+.placeholder-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: #f5f5f5;
+  font-family: "Nunito Sans", sans-serif;
+  text-align: center;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.placeholder-content h1 {
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--color-black);
+  margin-bottom: 16px;
+}
+
+.placeholder-content p {
+  font-size: 18px;
+  color: var(--color-grayTextandIcons);
+  margin-bottom: 24px;
+}
+
+.placeholder-image {
+  width: 500px;
+  height: 500px;
+  background: #ddd;
+  border-radius: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--color-black);
+  font-weight: 600;
+  margin: 0 auto 24px auto;
+}

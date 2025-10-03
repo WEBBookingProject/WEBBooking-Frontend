@@ -1,0 +1,78 @@
+/* ============================================ */
+/* Файл: src/components/ui/RegularPanel.css    */           
+/* Призначення: стилізація блоку "Be our regular" */
+/* ============================================ */
+
+/* --- Основний контейнер панелі --- */
+.regular-panel {
+  margin-top: 48px;
+  font-family: 'Nunito Sans', sans-serif;
+  text-align: center; 
+}
+
+/* --- Заголовок панелі --- */
+.regular-panel .regular-title {
+  font-weight: 400;
+  font-size: 16px;
+  color: var(--color-gray);
+  text-transform: uppercase;
+  margin-bottom: 32px;
+}
+
+/* --- Контейнер зображення та тексту --- */
+.regular-panel .regular-container {
+  max-width: 1200px;  
+  width: 100%;
+  display: flex;
+  align-items: stretch;
+  gap: 24px;
+  margin: 0 auto;
+}
+
+/* --- Зображення --- */
+.regular-panel .regular-image {
+  width: 272px;  
+  height: auto;
+  border-radius: 12px;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+/* --- Текстовий блок --- */
+.regular-panel .regular-text {
+  flex: 1;                          
+  border: 1px solid var(--color-black);
+  border-radius: 12px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;           
+  background-color: var(--color-white);
+  text-align: left; 
+}
+
+/* --- Параграф тексту --- */
+.regular-panel .regular-text p {
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--color-gray);
+  line-height: 1.4;
+}
+
+/* --- Адаптивна верстка --- */
+@media (max-width: 960px) {
+  .regular-panel .regular-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .regular-panel .regular-image {
+    width: 80%;
+    margin-bottom: 16px;
+  }
+
+  .regular-panel .regular-text {
+    width: 90%;
+    padding: 16px;
+  }
+}

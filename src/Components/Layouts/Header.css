@@ -1,0 +1,123 @@
+/* ============================================ */
+/*  Файл: src/components/layouts/Header.css */
+/* ============================================ */
+html, body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* =========================================
+   Header
+========================================= */
+.header {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  background: var(--color-white);
+  border-bottom: 1px solid var(--color-black);
+  box-shadow: 0px 4px 4px rgba(0,0,0,0.25);
+  position: relative;
+  padding: 0;
+}
+
+/* Верхній контейнер - логотип + кнопки */
+.header-top { 
+    width: 100%; 
+    padding: 0 40px; 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    min-height: 80px; 
+    box-sizing: border-box; }
+
+/* Логотип */
+.logo {
+  font-family: 'Nunito Sans', sans-serif;
+  font-weight: 800;
+  font-size: 24px;
+  color: var(--color-black);
+}
+
+.highlightCOLOR {
+  color: var(--color-highlight);
+}
+
+/* Контейнер кнопок дій */
+.header-actions {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+/* Кнопки реєстрації та логіну */
+.header-btn {
+  padding: 8px 16px;
+  border: 1px solid var(--color-stroke);
+  border-radius: 30px;
+  background: var(--color-white);
+  cursor: pointer;
+  transition: transform 0.15s ease-out, box-shadow 0.15s ease-out;
+}
+
+.header-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 2px 4px 6px rgba(0,0,0,0.1);
+}
+
+.header-btn:active {
+  transform: translateY(0);
+  box-shadow: inset 0 2px 4px rgba(0,0,0,0);
+}
+
+/* Кнопка зміни мови */
+.lang-btn {
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  width: 24px;
+  height: 24px;
+  background: url("../../../public/icons/layout_imgs/eng_icon.png") no-repeat center/cover;
+  transition: transform 0.1s ease;
+}
+
+.lang-btn:hover {
+  transform: scale(1.1);
+}
+
+.lang-btn:active {
+  transform: scale(1);
+}
+
+/* =========================================
+   Фонове зображення header
+========================================= */
+.header-img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  margin: 0;
+}
+
+/* =========================================
+   Панель пошуку поверх картинки
+========================================= */
+.header-search-wrapper {
+  position: absolute;
+  bottom: -32px; /* напівпанель поверх картинки */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 1104px;
+  height: 64px;
+  z-index: 10;
+}
+
+.header-panel {
+  position: absolute;
+  width: 1104px;
+  height: 64px;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 268px;
+}
+
