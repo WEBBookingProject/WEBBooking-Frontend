@@ -8,6 +8,12 @@ export function getHotels(): HotelView[] {
   }));
 }
 
+// Функція для отримання готелю за його ID
+export function getHotelById(id: string): HotelView | undefined {
+  const hotels = getHotels(); 
+  return hotels.find((hotel) => hotel.id === id); 
+}
+
 export function searchHotels(
   maxPrice: number,
   rating?: number,

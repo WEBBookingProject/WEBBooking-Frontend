@@ -1,0 +1,84 @@
+/* Хедер */
+.header-content {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 16px 24px; /* відступи у пікселях */
+}
+
+.btn-back {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: none;
+  border: none;
+  color: var(--color-gray);
+  font-size: 16px;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 8px;
+  transition: all 0.2s;
+}
+
+.btn-back:hover {
+  color: var(--color-black);
+  background-color: #f3f4f6;
+}
+
+.back-arrow {
+  font-size: 24px;
+}
+
+/* Сторінка "Не знайдено" */
+.details-not-found {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+}
+
+.details-not-found h2 {
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.btn-primary {
+  padding: 12px 32px;
+  background-color: var(--color-button);
+  color: var(--color-white);
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* Основний контейнер */
+.details-container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 32px 24px;
+}
+
+/* Hero секція */
+.hero-section {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 32px;
+  margin-bottom: 32px;
+}
+
+/* Адаптивність для планшетів */
+@media (max-width: 1024px) {
+  .hero-section {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Адаптивність для мобільних */
+@media (max-width: 768px) {
+  .details-container {
+    padding: 16px;
+  }
+}

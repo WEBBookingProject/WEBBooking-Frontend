@@ -17,7 +17,7 @@ export default function HotelList({ hotels }: HotelListProps) {
   const navigate = useNavigate();
 
   const handleChooseClick = (hotelId: string) => {
-    navigate("/hotel");
+     navigate(`/details/${hotelId}`);
   };
 
   return (

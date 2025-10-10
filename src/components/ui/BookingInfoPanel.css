@@ -1,0 +1,92 @@
+.booking-room-info-panel {
+  display: flex;
+  justify-content: center;
+  margin: 2rem 0;
+}
+
+.booking-room-container {
+  display: flex;
+  flex-direction: row;
+  border: 1px solid #e5e7eb;
+  border-radius: 15px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: box-shadow 0.2s;
+  max-width: 1250px;
+  width: 100%;
+  height: 250px;
+}
+
+/* Фото */
+.booking-room-image {
+  flex-shrink: 0;
+  width: 35%;
+  height: 100%;
+}
+
+.booking-room-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Деталі */
+.booking-room-details {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 1rem 2rem;
+  flex: 1;
+}
+
+.booking-room-name {
+  font-size: 32px;
+  font-weight: bold;
+  color: #111827;
+  margin-bottom: 0.5rem;
+}
+
+.booking-room-meta {
+  font-size: 16px;
+  color: #4b5563;
+  display: block;
+}
+
+.booking-room-status {
+  font-size: 16px;
+  color: #8b5cf6;
+  font-weight: 600;
+  margin-top: 1.5rem;
+}
+
+@media (max-width: 768px) {
+  .booking-room-container {
+    flex-direction: column;
+    max-width: 95%;
+    height: auto;
+  }
+
+  .booking-room-image {
+    width: 100%;
+    height: 300px;
+  }
+
+  .booking-room-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 15px;
+  }
+
+  .booking-room-details {
+    padding: 1rem;
+  }
+
+  .booking-room-name {
+    font-size: 24px;
+  }
+
+  .booking-room-status {
+    margin-top: 1rem;
+  }
+}

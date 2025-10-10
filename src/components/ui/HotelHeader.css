@@ -1,0 +1,154 @@
+.hotel-header {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem 2rem;
+  position: relative;
+}
+
+.back-btn {
+  position: absolute;
+  left: 1.5rem;
+  top: 1.5rem;
+  width: 40px;
+  height: 40px;
+  border: 2px solid #111827;
+  border-radius: 50%;
+  background: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  padding: 0;
+  transition: all 0.2s;
+}
+
+.back-btn:hover {
+  border-color: #6366f1;
+  transform: scale(1.1);
+}
+
+.back-icon {
+  width: 20px;
+  height: 20px;
+}
+
+.hotel-header-main{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 1280px; 
+  margin: 0 auto;
+  gap: 1rem;
+}
+
+.hotel-title-center{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  flex: 1; 
+}
+
+.stars-container {
+  display: flex;
+  gap: 0.25rem;
+}
+
+.star-full {
+  color: #8b5cf6;
+  font-size: 1.2rem;
+}
+
+.right-controls {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  min-width: 120px; 
+}
+
+.rating-circle {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-weight: bold;
+}
+
+.check-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: none;
+  border: none;
+  border-radius: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  color: #8b5cf6;
+}
+
+.check-text {
+  font-size: 17px;
+  font-weight: 600;
+}
+
+.rating-circle {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background-color: var(--color-white);
+  border: 2px solid var(--color-highlight);
+  color: var(--color-highlight);
+  font-weight: 600;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  box-sizing: border-box;
+}
+
+.rating-circle.top-rating {
+  box-shadow: 0 0 8px 2px rgba(88, 26, 219, 0.6);
+}
+
+@media (max-width: 768px) {
+  .back-btn {
+    display: none;
+  }
+
+  .right-controls {
+    flex-direction: row;
+    gap: 0.75rem;
+    margin-top: 0.5rem;
+  }
+
+  .mobile-controls {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .hotel-header-main {
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .hotel-name-header {
+    font-size: 1.5rem;
+  }
+
+  .rating-circle {
+    width: 40px;
+    height: 40px;
+  }
+
+  .check-btn {
+    padding: 0.25rem 0.5rem;
+  }
+}

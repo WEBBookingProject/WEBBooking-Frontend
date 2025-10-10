@@ -1,0 +1,39 @@
+/* Контейнер секції */
+.content-section {
+  margin-top: 48px;
+}
+
+/* Заголовок секції */
+.tittleF {
+  text-align: center;
+  font-weight: 400;
+  font-size: 16px;
+  color: var(--color-gray);
+  text-transform: uppercase;
+  margin-bottom: 24px;
+}
+
+/* Сітка з об'єктами зручностей */
+.amenities-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+/* Окрема зручність */
+.amenity-item {
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-size: 15px;
+}
+
+/* Адаптивність для мобільних */
+@media (max-width: 768px) {
+  .amenities-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .amenity-item {
+    font-size: 13px;
+  }
+}

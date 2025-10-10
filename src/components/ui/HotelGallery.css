@@ -1,0 +1,118 @@
+/* ============================================
+   File: src/components/pages/DetailsPage/components/PhotoGallery/PhotoGallery.css
+   ============================================ */
+
+.main-image-wrapper {
+  position: relative;
+  border-radius: 0.75rem;
+  overflow: hidden;
+  margin-bottom: 1rem;
+}
+
+.main-image {
+  background-color: #e5e7eb;
+  height: 450px;
+  width: 100%;
+}
+
+.main-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.nav-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.6);
+  border: none;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  font-size: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+}
+
+.nav-btn-left {
+  left: 1rem;
+}
+
+.nav-btn-right {
+  right: 1rem;
+}
+
+.nav-btn img {
+  width: 20px;
+  height: 20px;
+  filter: invert(100%); 
+}
+.next-img{
+  transform: rotate(180deg);
+}
+
+.thumbnails-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.75rem;
+}
+
+.thumbnail {
+  border-radius: 0.5rem;
+  overflow: hidden;
+  height: 200px;
+  border: 3px solid transparent;
+  cursor: pointer;
+  transition: all 0.2s;
+  padding: 0;
+  background: none;
+}
+
+.thumbnail:hover {
+  border-color: #d1d5db;
+}
+
+.thumbnail.active {
+  border-color: #6366f1;
+}
+
+.thumbnail img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+@media (max-width: 768px) {
+  .photo-gallery {
+    padding: 1rem;
+  }
+
+  .main-image {
+    height: 300px;
+  }
+
+  .thumbnails-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .thumbnail {
+    height: 70px;
+  }
+
+  .nav-btn {
+    width: 35px;
+    height: 35px;
+    font-size: 1.5rem;
+  }
+
+  .nav-btn-left {
+    left: 0.5rem;
+  }
+
+  .nav-btn-right {
+    right: 0.5rem;
+  }
+}
