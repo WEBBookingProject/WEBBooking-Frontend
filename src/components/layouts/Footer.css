@@ -1,6 +1,4 @@
-/* ============================================ */
-/*  Файл: src/components/layouts/Footer.css */
-/* ============================================ */
+
 .footer {
   width: 100%;
   min-height: 500px;
@@ -14,7 +12,6 @@
   margin-top: 100px;
 }
 
-/* Центральний контейнер для колонок */
 .central-container {
   display: flex;
   justify-content: space-between;
@@ -24,7 +21,6 @@
   flex-wrap: wrap;
 }
 
-/* Кожна колонка футера */
 .footer-column {
   display: flex;
   flex-direction: column;

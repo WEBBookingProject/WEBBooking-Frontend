@@ -1,16 +1,10 @@
-/* ============================================ */
-/* Файл: src/components/ui/RegularPanel.css    */           
-/* Призначення: стилізація блоку "Be our regular" */
-/* ============================================ */
 
-/* --- Основний контейнер панелі --- */
 .regular-panel {
   margin-top: 48px;
   font-family: 'Nunito Sans', sans-serif;
   text-align: center; 
 }
 
-/* --- Заголовок панелі --- */
 .regular-panel .regular-title {
   font-weight: 400;
   font-size: 16px;
@@ -19,7 +13,6 @@
   margin-bottom: 32px;
 }
 
-/* --- Контейнер зображення та тексту --- */
 .regular-panel .regular-container {
   max-width: 1200px;  
   width: 100%;
@@ -29,7 +22,6 @@
   margin: 0 auto;
 }
 
-/* --- Зображення --- */
 .regular-panel .regular-image {
   width: 272px;  
   height: auto;
@@ -38,7 +30,6 @@
   flex-shrink: 0;
 }
 
-/* --- Текстовий блок --- */
 .regular-panel .regular-text {
   flex: 1;                          
   border: 1px solid var(--color-black);
@@ -51,7 +42,6 @@
   text-align: left; 
 }
 
-/* --- Параграф тексту --- */
 .regular-panel .regular-text p {
   font-size: 16px;
   font-weight: 400;
@@ -59,20 +49,4 @@
   line-height: 1.4;
 }
 
-/* --- Адаптивна верстка --- */
-@media (max-width: 960px) {
-  .regular-panel .regular-container {
-    flex-direction: column;
-    align-items: center;
-  }
 
-  .regular-panel .regular-image {
-    width: 80%;
-    margin-bottom: 16px;
-  }
-
-  .regular-panel .regular-text {
-    width: 90%;
-    padding: 16px;
-  }
-}

@@ -1,6 +1,6 @@
+// ============================================
 // Компонент: ContentFeaturePanel
-// Файл: src/components/ui/ContentFeaturePanel.tsx
-// Призначення: відображення блоку фіч на HomePage
+// Опис: відображення блоку фіч на HomePage
 // ============================================
 
 import React, { JSX } from "react";

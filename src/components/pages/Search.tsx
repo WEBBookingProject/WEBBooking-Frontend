@@ -1,10 +1,8 @@
-/* ============================================ */
-// Файл: src/components/pages/Search.tsx
-/* Компонент: Search                            */
-/* Призначення: сторінка пошуку готелів        */
-/* ============================================ */
-
-import React, { JSX } from "react";
+// ============================================
+// Компонент: Search
+// Опис: Cторінка пошуку з компонентами панелі фільтрів та виводу списку готелей
+// ============================================
+import React, { useState, useEffect } from "react";
 import MainLayout from "../layouts/MainLayout";
 import ContentFeaturePanel, {
   FeatureItemData,
@@ -12,44 +10,55 @@ import ContentFeaturePanel, {
 import FilterPanel from "../ui/FilterPanel";
 import HotelList from "../ui/HotelList";
 import { HotelView } from "../../models/HotelView";
-import { getHotels } from "../../services/hotelService";
-import "./Search.css";
+import { searchHotels } from "../../services/hotelService";
 import { useNavigate } from "react-router-dom";
+import "./Search.css";
 
-export default function Search(): JSX.Element {
+export default function Search() {
   const background = "/icons/layout_imgs/header-img-search.png";
+  const [hotels, setHotels] = useState<HotelView[]>([]);
+  const navigate = useNavigate();
 
-  // Фічі верхньої панелі сторінки
   const searchFeatures: FeatureItemData[] = [
     { title: "Easy Booking", iconSrc: "/icons/ui/medalstar.svg" },
     { title: "Secure payment", iconSrc: "/icons/ui/link21.svg" },
     { title: "Relevant information", iconSrc: "/icons/ui/buildings2.svg" },
   ];
 
-  // Беремо 7 готелів для відображення
-  const hotels: HotelView[] = getHotels().slice(0, 7);
-  const navigate = useNavigate();
+  useEffect(() => {
+    const fetchAllHotels = async () => {
+      try {
+        const allHotels = await searchHotels();
+        setHotels(allHotels);
+      } catch (error) {
+        console.error("Failed to load hotels:", error);
+      }
+    };
+
+    fetchAllHotels();
+  }, []);
+
   return (
     <MainLayout background={background}>
-      {/* Верхня панель з фічами */}
       <ContentFeaturePanel
         features={searchFeatures}
         ariaLabel="Search page features"
       />
 
-      {/* Основний контейнер сторінки: ліва панель + права панель */}
       <div className="search-page-container">
-        {/* Ліва панель: кнопка "See the map" та фільтри */}
+        {/* Ліва панель */}
         <div className="search-left-panel">
           <button
             className="see-map-btn"
             aria-label="See the map"
             onClick={() => navigate("/map")}
           ></button>
-          <FilterPanel />
+
+          {/* Панель фільтрів */}
+          <FilterPanel onApplyFilters={setHotels} />
         </div>
 
-        {/* Права панель: список готелів */}
+        {/* Права панель */}
         <div className="search-right-panel">
           <HotelList hotels={hotels} />
         </div>

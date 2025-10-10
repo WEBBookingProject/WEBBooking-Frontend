@@ -1,5 +1,4 @@
 // ============================================
-// Файл: src/components/layouts/SearchBox.tsx
 // Компонент: SearchBox
 // Використовується: панель пошуку на Home, Search
 // Опис: Вибір напрямку, дати, гостей та кімнат з кнопкою пошуку
@@ -11,7 +10,6 @@ import "react-datepicker/dist/react-datepicker.css";
 import "./SearchBox.css";
 import { useNavigate } from "react-router-dom";
 
-// Форматування дати для відображення
 function formatDate(date: Date | null) {
   if (!date) return "";
   return date.toLocaleDateString(undefined, {
@@ -21,7 +19,6 @@ function formatDate(date: Date | null) {
   });
 }
 
-// Кастомний інпут для DatePicker
 const DateRangeInput = forwardRef<HTMLInputElement, any>(
   ({ value, onClick, startDate, endDate }, ref) => {
     const label =
@@ -58,7 +55,6 @@ export default function SearchBox() {
   const popupRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
 
-  // Функція зміни кількості гостей або кімнат
   const changeValue = (
     setter: React.Dispatch<React.SetStateAction<number>>,
     delta: number,
@@ -71,7 +67,6 @@ export default function SearchBox() {
     { label: "Rooms", value: rooms, setter: setRooms, min: 1 },
   ];
 
-  // Закриття спливаючого меню при кліку поза ним
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (
