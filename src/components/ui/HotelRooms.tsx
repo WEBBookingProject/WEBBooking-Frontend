@@ -12,7 +12,7 @@ const HotelRooms: React.FC<Props> = ({ hotel }) => {
   const rooms = ['Standard Room', 'Deluxe Room'];
 
   const handleChoose = (room: string, idx: number) => {
-    const price = hotel.price_per_night + idx * 30;
+    const price = hotel.priceForDay + idx * 30;
     navigate('/booking', {
       state: {
         roomName: room,
@@ -29,7 +29,10 @@ const HotelRooms: React.FC<Props> = ({ hotel }) => {
         {rooms.map((room, idx) => (
           <div key={idx} className="room-card">
             <div className="room-image">
-              <img src={hotel.images[idx % hotel.images.length]} alt={room} />
+              <img
+                src={hotel.photos[idx % hotel.photos.length] || '/images/default-hotel.jpg'}
+                alt={room}
+              />
             </div>
             <div className="room-details-left">
               <h4 className="room-name">{room}</h4>
@@ -38,7 +41,7 @@ const HotelRooms: React.FC<Props> = ({ hotel }) => {
               <p className="room-status">Free Cancel</p>
             </div>
             <div className="room-details-right">
-              <div className="room-price">${hotel.price_per_night + idx * 30}</div>
+              <div className="room-price">${hotel.priceForDay + idx * 30}</div>
               <button
                 className="btn-choose"
                 onClick={() => handleChoose(room, idx)}

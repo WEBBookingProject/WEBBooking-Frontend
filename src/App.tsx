@@ -19,10 +19,10 @@ function App() {
         <Route path="/search" element={<Search />} />
         <Route
           path="/hotel/:id"
-          element={<PlaceholderPage title="Hotel page" />}
+          element={<BookingPage/>}
         />
         <Route path="/map" element={<PlaceholderPage title="Map page" />} />
-        <Route path="/details/:id" element={<DetailsPage />} /> 
+        {/* <Route path="/details/:id" element={<DetailsPage />} />  */}
         <Route path="/booking" element={<BookingPage />} />
 
       </Routes>

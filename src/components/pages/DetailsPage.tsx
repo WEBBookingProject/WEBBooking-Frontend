@@ -1,14 +1,7 @@
-// ============================================
-// Файл: src/components/pages/DetailsPage.tsx
-// Компонент: DetailsPage
-// Використовується: для перегляду інформації про конкретний готель
-// Опис: Містить галерею, інформацію, відгуки, кімнати, FAQ та інші блоки
-// ============================================
-
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import MainLayout from "../layouts/MainLayoutDetails";
-import { getHotels } from "../../services/hotelService";
+import { getHotelById } from "../../services/hotelService";
 import { HotelView } from "../../models/HotelView";
 import HotelHeader from "../ui/HotelHeader";
 import HotelGallery from "../ui/HotelGallery";
@@ -24,13 +17,16 @@ import "./DetailsPage.css";
 const DetailsPage = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
-  const [selectedImage, setSelectedImage] = useState(0);
+  const [hotel, setHotel] = useState<HotelView | null>(null);
 
-  // Отримання готелів і вибір потрібного
-  const hotels = getHotels();
-  const hotel = hotels.find(h => h.id === id);
+  useEffect(() => {
+    if (id) {
+      getHotelById(id)
+        .then(h => setHotel(h))
+        .catch(err => console.error(err));
+    }
+  }, [id]);
 
-  // Якщо готель не знайдено
   if (!hotel) {
     return (
       <div className="details-not-found">
@@ -42,27 +38,21 @@ const DetailsPage = () => {
     );
   }
 
-  // Дані для відгуків
   const testComments: CommentView[] = testCommentsData as CommentView[];
 
-  // Основна структура сторінки
   return (
     <MainLayout>
-      {/* Заголовок сторінки */}
       <header className="details-header">
         <HotelHeader name={hotel.name} rating={hotel.rating} onBack={() => navigate(-1)} />
       </header>
 
-      {/* Основний контент */}
       <main className="details-page">
         <div className="details-container">
-          {/* Блок із фото та основною інформацією */}
           <section className="hero-section">
-            <HotelGallery images={hotel.images} hotelName={hotel.name} />
+            <HotelGallery images={hotel.photos} hotelName={hotel.name} />
             <HotelInfoPanel hotel={hotel} />
           </section>
 
-          {/* Додаткові секції */}
           <HotelFacilities hotel={hotel} />
           <HotelRooms hotel={hotel} />
           <HotelReviews hotel={hotel} comments={testComments} />

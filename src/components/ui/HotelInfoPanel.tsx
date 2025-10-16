@@ -31,7 +31,7 @@ const HotelInfo: React.FC<HotelInfoProps> = ({ hotel }) => {
       <div className="hotel-main-block">
         <div className="left-block">
           <div className="price-block">
-            <span className="price">${hotel.price_per_night}</span>
+            <span className="price">${hotel.priceForDay}</span>
             <span className="price-label">per night</span>
           </div>
           <div className="location-block">
