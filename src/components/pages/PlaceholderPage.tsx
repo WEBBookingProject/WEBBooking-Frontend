@@ -1,17 +1,21 @@
 // ============================================
-// Файл: src/components/pages/PlaceholderPage.tsx
-// Використовується: Заглушка
+// Компонент: PlaceholderPage
+// Опис: заглушка
 // ============================================
 import React from "react";
+import { useParams } from "react-router-dom";
 
 interface Props {
   title: string;
 }
 
 const PlaceholderPage: React.FC<Props> = ({ title }) => {
+  const params = useParams<{ id: string }>();
+
   return (
     <div style={{ textAlign: "center", padding: "50px" }}>
       <h1>{title}</h1>
+      {params.id && <p>ID об'єкта: {params.id}</p>}
       <p>Сторінка ще в розробці</p>
       <img
         src="/icons/placeholder.gif"

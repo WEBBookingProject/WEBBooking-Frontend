@@ -1,5 +1,4 @@
 // ============================================
-// Файл: src/components/ui/SafeWithUs.tsx
 // Компонент: SafeWithUs
 // Використовується: на HomePage
 // Призначення: відображає блок "Safe With Us" з іконками та текстом
@@ -41,7 +40,6 @@ const safeItems: SafeItem[] = [
   },
 ];
 
-// --- Компонент SafeWithUs ---
 export default function SafeWithUs() {
   return (
     <div className="safe-panel">

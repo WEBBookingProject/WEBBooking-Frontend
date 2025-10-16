@@ -1,8 +1,4 @@
-/* ============================================ */
-/* Файл: src/components/ui/FilterPanel.css    */
-/* ============================================ */
 
-/* Панель фільтрів */
 .filter-panel {
   width: 272px;
   padding: 0;
@@ -14,7 +10,6 @@
   overflow: hidden;
 }
 
-/* Секції фільтрів */
 .filter-section {
   padding: 16px;
   border-bottom: 1px solid var(--color-stroke);
@@ -31,7 +26,6 @@
   color: var(--color-gray);
 }
 
-/* Лейбли для чекбоксів і радіо */
 .filter-section label {
   display: flex;
   align-items: center;
@@ -42,13 +36,11 @@
   color: var(--color-gray);
 }
 
-/* Сховати стандартні інпути */
 .filter-panel input[type="radio"],
 .filter-panel input[type="checkbox"] {
   display: none;
 }
 
-/* Кастомний радіо/чекбокс */
 .custom-radio {
   width: 16px;
   height: 16px;
@@ -71,19 +63,16 @@
   display: none;
 }
 
-/* Активний стан чекбоксу/радіо */
 input[type="radio"]:checked + .custom-radio::after,
 input[type="checkbox"]:checked + .custom-radio::after {
   display: block;
 }
 
-/* Текст біля інпутів */
 .rating-label {
   font-size: 14px;
   color: var(--color-gray);
 }
 
-/* Відображення значень ціни */
 .price-values {
   display: flex;
   justify-content: space-between;
@@ -92,7 +81,6 @@ input[type="checkbox"]:checked + .custom-radio::after {
   color: var(--color-gray);
 }
 
-/* Слайдер ціни */
 .price-slider-container {
   margin-top: 8px;
 }
@@ -123,4 +111,25 @@ input[type="checkbox"]:checked + .custom-radio::after {
   background: var(--color-white);
   border: 1.5px solid var(--color-gray);
   cursor: pointer;
+}
+
+.filter-section.apply-button-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 16px; 
+}
+
+.apply-btn {
+  background-color: var(--color-highlight);
+  color: var(--color-white);
+  border: none;
+  border-radius: 12px;
+  padding: 8px 16px;
+  cursor: pointer;
+  margin-right: 10px;
+  width: 146px;
+}
+
+.apply-btn:hover {
+  opacity: 0.9;
 }

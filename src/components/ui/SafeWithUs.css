@@ -1,15 +1,9 @@
-/* ============================================ */
-/* Файл: src/components/ui/SafeWithUs.css      */
-/* Призначення: стилізація панелі "Safe with us" */
-/* ============================================ */
-
 .safe-panel {
   margin-top: 48px;
   text-align: center;
   font-family: 'Nunito Sans', sans-serif;
 }
 
-/* --- Заголовок панелі --- */
 .safe-panel .safe-title {
   font-weight: 400;
   font-size: 16px;
@@ -18,7 +12,6 @@
   margin-bottom: 32px;
 }
 
-/* --- Контейнер з елементами безпеки --- */
 .safe-panel .safe-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(208px, 1fr));
@@ -29,7 +22,6 @@
   justify-items: center;
 }
 
-/* --- Окрема "картка" безпеки --- */
 .safe-panel .safe-card {
   width: 208px;
   height: 208px;
@@ -43,14 +35,12 @@
   background-color: var(--color-white);
 }
 
-/* --- Іконка всередині картки --- */
 .safe-panel .safe-icon {
   width: 24px;
   height: 24px;
   object-fit: contain;
 }
 
-/* --- Текст всередині картки --- */
 .safe-panel .safe-text {
   font-size: 16px;
   font-weight: 400;

@@ -1,12 +1,7 @@
-/* ============================================
-   Файл: src/components/pages/Home.css
-   Опис: Стилі для сітки готелів та окремих карток
-============================================ */
 
-/* Контейнер сітки готелів */
 .hotel-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr); /* 4 колонки */
+  grid-template-columns: repeat(4, 1fr);
   gap: 24px;
   margin: 24px auto 0 auto;
   max-width: 1200px;
@@ -14,7 +9,6 @@
   justify-items: center;
 }
 
-/* Картка готелю */
 .hotel-card {
   display: flex;
   flex-direction: column;
@@ -23,7 +17,6 @@
   width: 272px;
 }
 
-/* Блок із зображенням */
 .hotel-image-wrapper {
   position: relative;
   width: 100%;
@@ -43,7 +36,6 @@
   transform: scale(1.05);
 }
 
-/* Кнопка "Улюблене" */
 .favorite-btn {
   position: absolute;
   top: 8px;
@@ -68,7 +60,6 @@
   box-shadow: 0 6px 6px rgba(0,0,0,0.3);
 }
 
-/* Навігаційні точки під зображенням */
 .image-dots {
   position: absolute;
   bottom: 8px;
@@ -90,7 +81,6 @@
   background: var(--color-highlight);
 }
 
-/* Блок інформації про готель */
 .hotel-info {
   margin-top: 8px;
   text-align: left;
@@ -98,7 +88,6 @@
   flex-direction: column;
 }
 
-/* Назва готелю */
 .hotel-name {
   font-weight: 600;
   font-size: 16px;
@@ -106,7 +95,6 @@
   color: var(--color-black);
 }
 
-/* Рейтинг */
 .hotel-rating {
   display: flex;
   gap: 2px;
@@ -124,7 +112,6 @@
   color: var(--color-highlight);
 }
 
-/* Відстань до центру або точки інтересу */
 .hotel-distance {
   font-weight: 400;
   font-size: 16px;
@@ -132,7 +119,6 @@
   margin-top: 2px;
 }
 
-/* Ціна за ніч */
 .hotel-price {
   font-weight: 800;
   font-size: 16px;

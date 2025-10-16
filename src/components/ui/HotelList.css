@@ -1,6 +1,3 @@
-/* ============================================ */
-/* Файл: src/components/ui/HotelList.css      */
-/* ============================================ */
 
 .search-hotel-list {
   display: flex;
@@ -8,7 +5,7 @@
   gap: 24px;
 }
 
-.search-hotel-card {
+.search-hotel-list .search-hotel-card {
   display: flex;
   flex-direction: row;
   border: 1px solid var(--color-stroke);
@@ -17,21 +14,19 @@
   background-color: var(--color-white);
 }
 
-/* Ліва колонка - картинка */
-.hotel-col-left {
+.search-hotel-list .hotel-col-left {
   width: 320px;
   height: 320px;
   flex-shrink: 0;
 }
 
-.hotel-col-left img {
+.search-hotel-list .hotel-col-left img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
-/* Середня колонка - інформація */
-.hotel-col-center {
+.search-hotel-list .hotel-col-center {
   flex: 1;
   padding: 16px;
   display: flex;
@@ -39,34 +34,34 @@
   gap: 8px;
 }
 
-.hotel-name {
+.search-hotel-list .hotel-name {
   font-size: 18px;
   font-weight: 600;
   color: var(--color-black);
   margin: 0;
 }
 
-.hotel-stars {
+.search-hotel-list .hotel-stars {
   display: flex;
   gap: 4px;
 }
 
-.hotel-stars .star {
+.search-hotel-list .hotel-stars .star {
   font-size: 20px;
   color: var(--color-white);
 }
 
-.hotel-stars .star.filled {
+.search-hotel-list .hotel-stars .star.filled {
   color: var(--color-highlight);
 }
 
-.hotel-facilities {
+.search-hotel-list .hotel-facilities {
   display: flex;
   flex-wrap: wrap;
   gap: 4px;
 }
 
-.facility-chip {
+.search-hotel-list .facility-chip {
   padding: 4px 8px;
   background-color: var(--color-stroke);
   border-radius: 6px;
@@ -74,12 +69,18 @@
   color: var(--color-black);
 }
 
-.hotel-category {
-  font-size: 14px;
-  color: var(--color-gray);
+.search-hotel-list .hotel-category {
+  margin-top: 0;
+  font-size: 16px;
+  color: var(--color-black);
 }
 
-.see-on-map-btn {
+.search-hotel-list .hotel-address {
+  font-size: 16px;
+  color: var(--color-black);
+}
+
+.search-hotel-list .see-on-map-btn {
   font-size: 14px;
   color: var(--color-black);
   background: none;
@@ -90,21 +91,20 @@
   align-items: center;
 }
 
-.see-on-map-btn:hover {
+.search-hotel-list .see-on-map-btn:hover {
   text-decoration: underline;
 }
 
-.arrow {
+.search-hotel-list .arrow {
   margin-left: 4px;
 }
 
-.hotel-description {
+.search-hotel-list .hotel-description {
   font-size: 14px;
   color: var(--color-gray);
 }
 
-/* Права колонка - рейтинг зверху, ціна + кнопка знизу */
-.hotel-col-right {
+.search-hotel-list .hotel-col-right {
   width: 120px;
   padding: 16px;
   display: flex;
@@ -114,8 +114,7 @@
   position: relative;
 }
 
-/* Рейтинг */
-.rating-circle {
+.search-hotel-list .rating-circle {
   width: 48px;
   height: 48px;
   border-radius: 50%;
@@ -131,48 +130,45 @@
   box-sizing: border-box;
 }
 
-.rating-circle.top-rating {
+.search-hotel-list .rating-circle.top-rating {
   box-shadow: 0 0 8px 2px rgba(88, 26, 219, 0.6);
 }
 
-/* Коронка над рейтингом */
-.crown-icon {
+.search-hotel-list .crown-icon {
   position: absolute;
   top: -20px;   
- 
   width: 20px;
   height: 20px;
 }
 
-/* Ціна + кнопка */
-.price-choose-block {
+.search-hotel-list .price-choose-block {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 8px;
 }
 
-.price-block {
+.search-hotel-list .price-block {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 4px;
 }
 
-.price-label {
+.search-hotel-list .price-label {
   font-size: 16px;
   font-weight: 400;
   color: var(--color-gray);
   margin: 0;
 }
 
-.price-value {
+.search-hotel-list .price-value {
   font-size: 18px;
   font-weight: 600;
   margin: 0;
 }
 
-.choose-btn {
+.search-hotel-list .choose-btn {
   background-color: var(--color-highlight);
   color: var(--color-white);
   border: none;
@@ -183,6 +179,34 @@
   width: 146px;
 }
 
-.choose-btn:hover {
+.search-hotel-list .choose-btn:hover {
   opacity: 0.9;
+}
+
+.search-hotel-list .pagination {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  margin-top: 24px;
+}
+
+.search-hotel-list .pagination button {
+  border: 1px solid var(--color-stroke);
+  background-color: var(--color-white);
+  color: var(--color-black);
+  border-radius: 8px;
+  padding: 6px 12px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.search-hotel-list .pagination button:hover {
+  background-color: var(--color-highlight);
+  color: var(--color-white);
+}
+
+.search-hotel-list .pagination button.active {
+  background-color: var(--color-highlight);
+  color: var(--color-white);
+  border-color: var(--color-highlight);
 }

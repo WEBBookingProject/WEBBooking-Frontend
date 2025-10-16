@@ -1,8 +1,4 @@
-/* ============================================ */
-/* Файл: src/components/pages/Search.css       */
-/* ============================================ */
 
-/* --- Основний контейнер двоколонкового макету --- */
 .search-page-container {
   max-width: 1200px;  
   width: 100%;
@@ -13,7 +9,6 @@
   box-sizing: border-box;
 }
 
-/* --- Ліва панель: кнопка + фільтри --- */
 .search-left-panel {
   flex: 0 0 272px;
   display: flex;
@@ -21,7 +16,6 @@
   gap: 16px;
 }
 
-/* Кнопка "See the map" */
 .see-map-btn {
   width: 100%; 
   height: 40px;
@@ -40,7 +34,6 @@
   box-shadow: 2px 4px 6px rgba(0,0,0,0.1);
 }
 
-/* --- Права панель: список готелів --- */
 .search-right-panel {
   flex: 1;
   display: flex;
@@ -48,7 +41,6 @@
   gap: 24px;
 }
 
-/* --- Ізоляція для списку готелів, щоб не конфліктувало з HomePage --- */
 .search-right-panel .hotel-list {
   display: flex;
   flex-direction: column;

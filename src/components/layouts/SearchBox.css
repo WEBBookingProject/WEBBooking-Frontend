@@ -1,7 +1,3 @@
-/* ============================================ */
-/*  Файл: src/components/layouts/SearchBox.css */
-/* ============================================ */
-
 .text, .search-box, .search-box * {
   font-family: "Nunito Sans", sans-serif;
   font-weight: 400;
@@ -19,10 +15,6 @@
   opacity: 1;
 }
 
-/* =========================================
-   Контейнер пошуку
-   (фонова панель окремо для hover)
-========================================= */
 .search-box {
   position: relative;
   width: 100%;
@@ -58,9 +50,6 @@
   z-index: 1; 
 }
 
-/* =========================================
-   Секції пошуку
-========================================= */
 .search-item {
   display: flex;
   align-items: center;
@@ -79,14 +68,10 @@
   padding-left: 12px;
 }
 
-/* Ширини та відступи */
 .search-item.destination { flex: 3; min-width: 200px; gap: 12px; }
 .search-item.dates       { flex: 3; min-width: 260px; gap: 8px; }
 .search-item.guests      { flex: 4; min-width: 280px; gap: 12px; }
 
-/* =========================================
-   Іконки
-========================================= */
 .icon {
   width: 20px;
   height: 20px;
@@ -95,9 +80,6 @@
   flex-shrink: 0;
 }
 
-/* =========================================
-   Inputs та плейсхолдери
-========================================= */
 .search-item input,
 .date-input,
 .date-display {
@@ -118,9 +100,6 @@
   border: none;
 }
 
-/* =========================================
-   React-datepicker
-========================================= */
 .react-datepicker-wrapper,
 .react-datepicker__input-container input {
   border: none;
@@ -165,9 +144,7 @@
   background-color: var(--color-highlight);
 }
 
-/* =========================================
-   Guests / Rooms popup
-========================================= */
+
 .guest-summary {
   display: flex;
   gap: 16px;
@@ -253,9 +230,7 @@
   color: var(--color-black);
 }
 
-/* =========================================
-   Submit / search icon
-========================================= */
+
 .search-icon {
   width: 68px;
   height: 68px;

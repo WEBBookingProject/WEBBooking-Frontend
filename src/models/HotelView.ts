@@ -1,15 +1,17 @@
 export interface HotelView {
   id: string;
+  authorId: string;
   name: string;
-  city: string;
-  country: string;
+  description: string | null;
+  priceForDay: number;
+  maxGuests: number;
   rating: number;
-  distance_to_center_km: number;
-  price_per_night: number;
-  type: string; 
+  address: string;
+  latitudeCoordinate: number;
+  longitudeCoordinate: number;
   category: string;
-  facilities: string[];
-  images: string[];
-  mainImage: string; 
-  description: string;
+  photos: string[];
+  createdAt: string;
+  contactPhone: string;
+  contactEmail: string;
 }

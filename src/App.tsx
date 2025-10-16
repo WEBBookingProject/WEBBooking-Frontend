@@ -17,7 +17,10 @@ function App() {
         />
         <Route path="/signin" element={<PlaceholderPage title="Sign In" />} />
         <Route path="/search" element={<Search />} />
-        <Route path="/hotel" element={<PlaceholderPage title="Hotel page" />} />
+        <Route
+          path="/hotel/:id"
+          element={<PlaceholderPage title="Hotel page" />}
+        />
         <Route path="/map" element={<PlaceholderPage title="Map page" />} />
         <Route path="/details/:id" element={<DetailsPage />} /> 
         <Route path="/booking" element={<BookingPage />} />

@@ -1,15 +1,12 @@
 // ============================================
-// Файл: src/components/pages/Home.tsx
 // Компонент: Home
-// Використовується: головна сторінка сайту
-// Опис: Відображає лейаут, панель фіч, сітку готелів, відгуки, CTA
+// Опис: Головна сторінка сайту топ готелей, 3 головні коментарі, опис
 // ============================================
-
-import React, { JSX, useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import MainLayout from "../layouts/MainLayout";
 import "./Home.css";
-import { getHotels } from "../../services/hotelService";
+import { getTop10Hotels } from "../../services/hotelService";
 import { getComments } from "../../services/commentService";
 import { HotelView } from "../../models/HotelView";
 import ContentFeaturePanel, {
@@ -20,12 +17,9 @@ import SafeWithUs from "../ui/SafeWithUs";
 import RegularPanel from "../ui/RegularPanel";
 import RegisterCTA from "../ui/RegisterCTA";
 
-// ============================================
-// Компонент: Home
-// ============================================
-export default function Home(): JSX.Element {
-  const hotels: HotelView[] = getHotels();
-  const comments = getComments();
+export default function Home() {
+  const [hotels, setHotels] = useState<HotelView[]>([]);
+  const [comments, setComments] = useState<any[]>([]);
   const background = "/icons/layout_imgs/header-img@2x.png";
 
   const homeFeatures: FeatureItemData[] = [
@@ -34,15 +28,36 @@ export default function Home(): JSX.Element {
     { title: "Relevant information", iconSrc: "/icons/receipt.svg" },
   ];
 
+  useEffect(() => {
+    async function fetchTopHotels() {
+      try {
+        const topHotels = await getTop10Hotels();
+        setHotels(topHotels.slice(0, 8));
+      } catch (error) {
+        console.error("Failed to fetch top hotels:", error);
+      }
+    }
+
+    async function fetchComments() {
+      try {
+        const comms = await getComments();
+        setComments(comms);
+      } catch (error) {
+        console.error("Failed to fetch comments:", error);
+      }
+    }
+
+    fetchTopHotels();
+    fetchComments();
+  }, []);
+
   return (
     <MainLayout background={background}>
-      {/* Панель фіч */}
       <ContentFeaturePanel
         features={homeFeatures}
         ariaLabel="Main page features"
       />
 
-      {/* Основний контент сторінки */}
       <main className="page-content">
         <HotelGrid hotels={hotels} />
         <ReviewsPanel comments={comments} />
@@ -54,10 +69,7 @@ export default function Home(): JSX.Element {
   );
 }
 
-// ============================================
-// Компонент: HotelGrid
-// Опис: Відображає сітку готелів
-// ============================================
+// --- HotelGrid ---
 function HotelGrid({ hotels }: { hotels: HotelView[] }) {
   return (
     <div className="hotel-grid">
@@ -68,11 +80,7 @@ function HotelGrid({ hotels }: { hotels: HotelView[] }) {
   );
 }
 
-// ============================================
-// Компонент: HotelCard
-// Опис: Відображає окрему картку готелю з слайдом зображень, рейтингом і ціною.
-//        При кліку на картку (крім кнопок) редіректить на /hotel
-// ============================================
+// --- HotelCard ---
 function HotelCard({ hotel }: { hotel: HotelView }) {
   const [currentImage, setCurrentImage] = useState(0);
   const navigate = useNavigate();
@@ -80,9 +88,10 @@ function HotelCard({ hotel }: { hotel: HotelView }) {
   const handleCardClick = (e: React.MouseEvent<HTMLDivElement>) => {
     const target = e.target as HTMLElement;
     if (target.closest(".favorite-btn") || target.closest(".dot")) return;
-
-    navigate("/hotel");
+    navigate(`/hotel/${hotel.id}`);
   };
+
+  const ratingStars = Math.round(hotel.rating / 2);
 
   return (
     <div
@@ -91,10 +100,9 @@ function HotelCard({ hotel }: { hotel: HotelView }) {
       role="button"
       tabIndex={0}
     >
-      {/* Зображення готелю */}
       <div className="hotel-image-wrapper">
         <img
-          src={hotel.images[currentImage]}
+          src={hotel.photos?.[currentImage] || "/images/default-hotel.jpg"}
           alt={hotel.name}
           className="hotel-image"
         />
@@ -102,35 +110,30 @@ function HotelCard({ hotel }: { hotel: HotelView }) {
           ★
         </button>
         <div className="image-dots">
-          {hotel.images.map((_, i) => (
+          {hotel.photos?.map((_, i) => (
             <span
               key={i}
               className={`dot ${i === currentImage ? "active" : ""}`}
               onClick={() => setCurrentImage(i)}
-            ></span>
+            />
           ))}
         </div>
       </div>
 
-      {/* Інформація про готель */}
       <div className="hotel-info">
         <div className="hotel-name">
-          {hotel.name} | {hotel.city} | {hotel.country}
+          {hotel.name} | {hotel.address}
         </div>
         <div className="hotel-rating">
           {Array.from({ length: 5 }).map((_, i) => (
-            <span
-              key={i}
-              className={`star ${i < Math.round(hotel.rating) ? "filled" : ""}`}
-            >
+            <span key={i} className={`star ${i < ratingStars ? "filled" : ""}`}>
               ★
             </span>
           ))}
+          <span className="rating-number">{hotel.rating.toFixed(1)}</span>
         </div>
-        <div className="hotel-distance">
-          The city center: {hotel.distance_to_center_km} km
-        </div>
-        <div className="hotel-price">${hotel.price_per_night} / night</div>
+        <div className="hotel-distance">Distance to center: approx.</div>
+        <div className="hotel-price">${hotel.priceForDay} / night</div>
       </div>
     </div>
   );

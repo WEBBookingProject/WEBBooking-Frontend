@@ -1,15 +1,10 @@
-/* ============================================ */
-/*  Файл: src/components/layouts/Header.css */
-/* ============================================ */
+
 html, body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-/* =========================================
-   Header
-========================================= */
 .header {
   width: 100%;
   display: flex;
@@ -21,7 +16,6 @@ html, body {
   padding: 0;
 }
 
-/* Верхній контейнер - логотип + кнопки */
 .header-top { 
     width: 100%; 
     padding: 0 40px; 
@@ -31,7 +25,6 @@ html, body {
     min-height: 80px; 
     box-sizing: border-box; }
 
-/* Логотип */
 .logo {
   font-family: 'Nunito Sans', sans-serif;
   font-weight: 800;
@@ -43,14 +36,12 @@ html, body {
   color: var(--color-highlight);
 }
 
-/* Контейнер кнопок дій */
 .header-actions {
   display: flex;
   gap: 12px;
   align-items: center;
 }
 
-/* Кнопки реєстрації та логіну */
 .header-btn {
   padding: 8px 16px;
   border: 1px solid var(--color-stroke);
@@ -70,7 +61,6 @@ html, body {
   box-shadow: inset 0 2px 4px rgba(0,0,0,0);
 }
 
-/* Кнопка зміни мови */
 .lang-btn {
   border: none;
   padding: 0;
@@ -89,9 +79,6 @@ html, body {
   transform: scale(1);
 }
 
-/* =========================================
-   Фонове зображення header
-========================================= */
 .header-img {
   width: 100%;
   height: 220px;
@@ -99,12 +86,9 @@ html, body {
   margin: 0;
 }
 
-/* =========================================
-   Панель пошуку поверх картинки
-========================================= */
 .header-search-wrapper {
   position: absolute;
-  bottom: -32px; /* напівпанель поверх картинки */
+  bottom: -32px; 
   left: 50%;
   transform: translateX(-50%);
   width: 1104px;

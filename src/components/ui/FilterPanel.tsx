@@ -1,19 +1,25 @@
 // ============================================
-// Файл: src/components/ui/FilterPanel.tsx
 // Компонент: FilterPanel
 // Використовується: на Search
-// Призначення: панель фільтрів для пошуку готелів
+// Опис: панель з фільтрами для пошуку
 // ============================================
+
 import React, { useState } from "react";
 import "./FilterPanel.css";
+import { HotelView } from "../../models/HotelView";
+import { searchHotels } from "../../services/hotelService";
 
-const RATINGS = ["6+", "7+", "8+", "9+"];
+const RATINGS = ["1+", "2+", "3+", "4+", "5+", "6+", "7+", "8+", "9+"];
 const TYPES = ["Hotel", "Apartment", "Hostel"];
 const CATEGORIES = ["Luxury", "Budget", "Business", "Family"];
 const FACILITIES = ["Kitchen", "WiFi", "Free WiFi", "Parking"];
 
-export default function FilterPanel() {
-  const [maxPrice, setMaxPrice] = useState(230);
+interface FilterPanelProps {
+  onApplyFilters: (hotels: HotelView[]) => void;
+}
+
+export default function FilterPanel({ onApplyFilters }: FilterPanelProps) {
+  const [maxPrice, setMaxPrice] = useState(100);
   const [rating, setRating] = useState("");
   const [types, setTypes] = useState<string[]>([]);
   const [categories, setCategories] = useState<string[]>([]);
@@ -24,29 +30,53 @@ export default function FilterPanel() {
     value: string,
     setter: React.Dispatch<React.SetStateAction<string[]>>
   ) => {
-    if (current.includes(value)) {
-      setter(current.filter((v) => v !== value));
-    } else {
-      setter([...current, value]);
-    }
+    setter(
+      current.includes(value)
+        ? current.filter((v) => v !== value)
+        : [...current, value]
+    );
   };
 
   const toggleSingleCheckbox = (value: string) => {
     setRating(rating === value ? "" : value);
   };
 
+  const applyFilters = async () => {
+    try {
+      const ratingNumber = rating ? parseInt(rating) : 0;
+      const filters = {
+        maxPrice,
+        rating: ratingNumber,
+        category: categories[0] || undefined,
+        kitchen: facilities.includes("Kitchen"),
+        wifi: facilities.includes("WiFi"),
+        freeWifi: facilities.includes("Free WiFi"),
+        parkingPlaces: facilities.includes("Parking") ? 1 : 0,
+      };
+
+      console.log("Sending filters:", filters);
+
+      const hotels = await searchHotels(filters);
+      console.log("Received hotels:", hotels);
+
+      onApplyFilters(hotels);
+    } catch (error) {
+      console.error("Failed to fetch hotels:", error);
+    }
+  };
+
   return (
     <div className="filter-panel">
+      {/* Price */}
       <div className="filter-section">
-        <h3>Price</h3>
+        <h3>Price (max)</h3>
         <div className="price-values">
-          <span>76$ night</span>
-          <span>{maxPrice}$ night</span>
+          <span>${maxPrice}</span>
         </div>
         <div className="price-slider-container">
           <input
             type="range"
-            min={76}
+            min={0}
             max={500}
             value={maxPrice}
             onChange={(e) => setMaxPrice(Number(e.target.value))}
@@ -54,6 +84,7 @@ export default function FilterPanel() {
         </div>
       </div>
 
+      {/* Rating */}
       <div className="filter-section">
         <h3>Rating</h3>
         {RATINGS.map((value) => (
@@ -69,6 +100,7 @@ export default function FilterPanel() {
         ))}
       </div>
 
+      {/* Type */}
       <div className="filter-section">
         <h3>Type</h3>
         {TYPES.map((value) => (
@@ -84,6 +116,7 @@ export default function FilterPanel() {
         ))}
       </div>
 
+      {/* Category */}
       <div className="filter-section">
         <h3>Category</h3>
         {CATEGORIES.map((value) => (
@@ -101,6 +134,7 @@ export default function FilterPanel() {
         ))}
       </div>
 
+      {/* Facilities */}
       <div className="filter-section">
         <h3>Facilities</h3>
         {FACILITIES.map((value) => (
@@ -116,6 +150,13 @@ export default function FilterPanel() {
             <span className="rating-label">{value}</span>
           </label>
         ))}
+      </div>
+
+      {/* Apply button */}
+      <div className="filter-section apply-button-container">
+        <button className="apply-btn" onClick={applyFilters}>
+          Apply
+        </button>
       </div>
     </div>
   );
