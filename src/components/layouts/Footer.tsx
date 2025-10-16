@@ -2,67 +2,135 @@
 // Компонент: Footer
 // Використовується: на MainLayout
 // ============================================
+import { useState } from "react";
 import "./Footer.css";
 
+interface FooterSection {
+  title: string;
+  items: string[];
+}
+
+const footerSections: FooterSection[] = [
+  {
+    title: "Destinations",
+    items: [
+      "Countries",
+      "Regions",
+      "Cities",
+      "Districts",
+      "Airports",
+      "Hotels",
+      "Places of interest",
+    ],
+  },
+  {
+    title: "Accommodation Types",
+    items: [
+      "Homes",
+      "Apartments",
+      "Resorts",
+      "Villas",
+      "Hostels",
+      "B&Bs",
+      "Guest houses",
+    ],
+  },
+  {
+    title: "Discover",
+    items: [
+      "Unique places to stay",
+      "All destinations",
+      "All flight destinations",
+      "All car hire locations",
+      "Discover",
+      "Reviews",
+      "Awards",
+    ],
+  },
+  {
+    title: "Services",
+    items: [
+      "Car hire",
+      "Flight finder",
+      "Restaurant reservations",
+      "For Travel Agents",
+    ],
+  },
+  {
+    title: "About & Support",
+    items: [
+      "Coronavirus (COVID-19) FAQs",
+      "About Booking.com",
+      "Customer Service help",
+      "Partner help",
+      "Careers",
+      "Sustainability",
+      "Press centre",
+      "Safety resource centre",
+      "Investor relations",
+      "Terms & Conditions",
+      "Partner dispute",
+      "How we work",
+      "Privacy & Cookie Statement",
+      "MSA Statement",
+      "Corporate contact",
+      "We Price Match",
+    ],
+  },
+];
+
 export default function Footer() {
+  const [expandedSections, setExpandedSections] = useState<Set<number>>(
+    new Set()
+  );
+
+  const toggleSection = (index: number) => {
+    setExpandedSections((prev) => {
+      const newSet = new Set(prev);
+      if (newSet.has(index)) {
+        newSet.delete(index);
+      } else {
+        newSet.add(index);
+      }
+      return newSet;
+    });
+  };
+
   return (
     <footer className="footer">
       <div className="central-container">
-        <div className="footer-column">
-          <span>Countries</span>
-          <span>Regions</span>
-          <span>Cities</span>
-          <span>Districts</span>
-          <span>Airports</span>
-          <span>Hotels</span>
-          <span>Places of interest</span>
-        </div>
+        {footerSections.map((section, index) => (
+          <div key={index} className="footer-column">
+            {/* Mobile collapsible header */}
+            <div
+              className="footer-column-header"
+              onClick={() => toggleSection(index)}
+              role="button"
+              tabIndex={0}
+              aria-expanded={expandedSections.has(index)}
+            >
+              <span>{section.title}</span>
+              <span
+                className={`chevron ${
+                  expandedSections.has(index) ? "expanded" : ""
+                }`}
+              >
+                ▼
+              </span>
+            </div>
 
-        <div className="footer-column">
-          <span>Homes</span>
-          <span>Apartments</span>
-          <span>Resorts</span>
-          <span>Villas</span>
-          <span>Hostels</span>
-          <span>B&Bs</span>
-          <span>Guest houses</span>
-        </div>
-
-        <div className="footer-column">
-          <span>Unique places to stay</span>
-          <span>All destinations</span>
-          <span>All flight destinations</span>
-          <span>All car hire locations</span>
-          <span>Discover</span>
-          <span>Reviews</span>
-          <span>Awards</span>
-        </div>
-
-        <div className="footer-column">
-          <span>Car hire</span>
-          <span>Flight finder</span>
-          <span>Restaurant reservations</span>
-          <span>For Travel Agents</span>
-        </div>
-
-        <div className="footer-column">
-          <span>Coronavirus (COVID-19) FAQs</span>
-          <span>About Booking.com</span>
-          <span>Customer Service help</span>
-          <span>Partner help</span>
-          <span>Careers</span>
-          <span>Sustainability</span>
-          <span>Press centre</span>
-          <span>Safety resource centre</span>
-          <span>Investor relations</span>
-          <span>Terms & Conditions</span>
-          <span>Partner dispute</span>
-          <span>How we work</span>
-          <span>Privacy & Cookie Statement</span>
-          <span>MSA Statement</span>
-          <span>Corporate contact</span>
-          <span>We Price Match</span>
-        </div>
+            {/* Content - visible on desktop, collapsible on mobile */}
+            <div
+              className={`footer-column-content ${
+                expandedSections.has(index) ? "expanded" : ""
+              }`}
+            >
+              {section.items.map((item, itemIndex) => (
+                <span key={itemIndex}>{item}</span>
+              ))}
+            </div>
+          </div>
+        ))}
       </div>
     </footer>
   );

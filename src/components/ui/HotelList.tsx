@@ -58,13 +58,36 @@ export default function HotelList({ hotels }: HotelListProps) {
                 ))}
               </div>
 
-              {/* Facilities (заглушка) */}
+              {/* Facilities */}
               <div className="hotel-facilities">
-                {["Facility 1", "Facility 2", "Facility 3"].map((f) => (
-                  <span key={f} className="facility-chip">
-                    {f}
-                  </span>
-                ))}
+                {hotel.description && (
+                  <>
+                    {hotel.description.wiFi && (
+                      <span className="facility-chip">Wi-Fi</span>
+                    )}
+                    {hotel.description.freeWiFi && (
+                      <span className="facility-chip">Free Wi-Fi</span>
+                    )}
+                    {hotel.description.parkingPlaces > 0 && (
+                      <span className="facility-chip">
+                        Parking ({hotel.description.parkingPlaces})
+                      </span>
+                    )}
+                    {hotel.description.kitchen && (
+                      <span className="facility-chip">Kitchen</span>
+                    )}
+                    {hotel.description.sleepingArrangements > 0 && (
+                      <span className="facility-chip">
+                        Sleeping for {hotel.description.sleepingArrangements}
+                      </span>
+                    )}
+                    {hotel.description.appartamentSize > 0 && (
+                      <span className="facility-chip">
+                        {hotel.description.appartamentSize} m²
+                      </span>
+                    )}
+                  </>
+                )}
               </div>
 
               {/* Адреса */}
@@ -79,15 +102,10 @@ export default function HotelList({ hotels }: HotelListProps) {
               >
                 See on the map <span className="arrow">→</span>
               </button>
-
-              {/* Опис (тимчасова заглушка) */}
-              <p className="hotel-description">
-                Тимчасова заглушка - опис в description, як і facilities Lorem
-                ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                nisi ut aliquip ex ea commodo consequat.
-              </p>
+              {/* Description */}
+              {hotel.description?.text && (
+                <p className="hotel-description">{hotel.description.text}</p>
+              )}
             </div>
 
             {/* Права колонка - рейтинг зверху, ціна та кнопка внизу */}
@@ -122,22 +140,22 @@ export default function HotelList({ hotels }: HotelListProps) {
             </div>
           </div>
         ))}
-      </div>
 
-      {/* Пагінація */}
-      {totalPages > 1 && (
-        <div className="pagination">
-          {Array.from({ length: totalPages }, (_, i) => (
-            <button
-              key={i}
-              onClick={() => setCurrentPage(i + 1)}
-              className={currentPage === i + 1 ? "active" : ""}
-            >
-              {i + 1}
-            </button>
-          ))}
-        </div>
-      )}
+        {/* Пагінація */}
+        {totalPages > 1 && (
+          <div className="pagination">
+            {Array.from({ length: totalPages }, (_, i) => (
+              <button
+                key={i}
+                onClick={() => setCurrentPage(i + 1)}
+                className={currentPage === i + 1 ? "active" : ""}
+              >
+                {i + 1}
+              </button>
+            ))}
+          </div>
+        )}
+      </div>
     </>
   );
 }

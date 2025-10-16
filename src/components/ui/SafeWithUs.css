@@ -60,3 +60,31 @@
   color: var(--color-gray-dark, #333);
   text-shadow: 0 4px 4px rgba(0,0,0,0.25);
 }
+
+
+@media (max-width: 768px) {
+  .safe-panel {
+  padding-left: 12px;
+    padding-right: 12px;
+}
+  .safe-panel .safe-grid {
+    
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); 
+    gap: 16px;
+    width: 100%;
+    max-width: 100%;
+    justify-items: center;
+    
+  }
+
+  .safe-panel .safe-card {
+    width: 100%;      
+    max-width: 280px; 
+  }
+
+  .safe-panel .safe-card:nth-child(5) {
+    grid-column: 1 / -1;  
+    max-width: 100%;
+  }
+}

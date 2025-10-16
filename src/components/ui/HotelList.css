@@ -1,3 +1,6 @@
+/* ============================================ */
+/* Файл: src/components/ui/HotelList.css       */
+/* ============================================ */
 
 .search-hotel-list {
   display: flex;
@@ -209,4 +212,72 @@
   background-color: var(--color-highlight);
   color: var(--color-white);
   border-color: var(--color-highlight);
+}
+
+
+
+
+@media (max-width: 768px) {
+  /* Панель кнопок Filters та Map */
+  .search-left-panel.mobile-buttons {
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 16px;
+    gap: 8px;
+  }
+
+  .see-map-btn, .filter-panel-btn {
+    width: 48%;
+    height: 40px;
+    border-radius: 12px;
+    background-color: var(--color-highlight);
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+  }
+
+  .search-hotel-list .search-hotel-card {
+    flex-direction: column;
+  }
+
+  .hotel-img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+  }
+
+  .hotel-info {
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .hotel-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .hotel-stars {
+    margin: 4px 0;
+  }
+
+  .hotel-facilities {
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .price-choose-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 8px;
+    gap: 4px;
+  }
+
+  .choose-btn {
+    width: 100%;
+  }
 }
