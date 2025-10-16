@@ -26,11 +26,25 @@ export default function Header({ bgImage }: HeaderProps) {
 
         <div className="header-actions">
           <button className="lang-btn" aria-label="Change language"></button>
+
           <button className="header-btn" onClick={() => navigate("/register")}>
             Register
           </button>
           <button className="header-btn" onClick={() => navigate("/signin")}>
             Sign In
+          </button>
+
+          <button
+            className="mobile-account-btn"
+            onClick={() => navigate("/signin")}
+            aria-label="Account"
+          >
+            <span>Account</span>
+            <img
+              src="/icons/layout_imgs/profile.svg"
+              alt="User"
+              className="user-icon"
+            />
           </button>
         </div>
       </div>

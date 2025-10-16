@@ -144,7 +144,6 @@
   background-color: var(--color-highlight);
 }
 
-
 .guest-summary {
   display: flex;
   gap: 16px;
@@ -230,7 +229,6 @@
   color: var(--color-black);
 }
 
-
 .search-icon {
   width: 68px;
   height: 68px;
@@ -250,3 +248,68 @@
 .search-icon:active {
   transform: scale(1);
 }
+
+/* ============================================
+   MOBILE ADAPTATION - SearchBox
+   ============================================ */
+
+@media (max-width: 768px) {
+  .search-box {
+    height: auto;
+    min-height: 56px;
+  }
+  
+  .search-box-bg {
+    border-radius: 28px;
+  }
+  
+  .search-section {
+    flex-direction: row;
+    align-items: center;
+    padding: 12px 16px;
+  }
+  
+  .search-item.dates,
+  .search-item.guests {
+    display: none;
+  }
+  
+  .search-item.destination {
+    flex: 1;
+    padding: 0;
+    min-width: 0;
+    border: none;
+  }
+  
+  .search-item.destination .icon {
+    width: 20px;
+    height: 20px;
+    margin-right: 8px;
+  }
+  
+  .search-item.destination input {
+    font-size: 14px;
+  }
+  
+  .search-item.submit {
+    padding: 0;
+    margin-left: 12px;
+  }
+  
+  .search-icon {
+    width: 40px;
+    height: 40px;
+    position: static;
+    background: url("../../../public/icons/searchBox__imgs/filter.svg") no-repeat center;
+    background-size: 24px 24px;
+    border-radius: 50%;
+    background-color: var(--color-highlight);
+  }
+  
+  .search-icon:hover {
+    transform: scale(1.05);
+  }
+}
+
+
+ 

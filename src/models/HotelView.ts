@@ -1,8 +1,10 @@
+import { HotelDescription } from "./HotelDescription";
+
 export interface HotelView {
   id: string;
   authorId: string;
   name: string;
-  description: string | null;
+  description: HotelDescription | null;
   priceForDay: number;
   maxGuests: number;
   rating: number;
