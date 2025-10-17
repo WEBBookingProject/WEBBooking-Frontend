@@ -3,6 +3,7 @@ import { HotelView} from "../models/HotelView";
 
 const API_BASE_URL = "https://localhost:7073/api";
 
+
 async function fetchData<T>(url: string, options?: RequestInit): Promise<T> {
   const response = await fetch(url, {
     headers: { "Content-Type": "application/json" },

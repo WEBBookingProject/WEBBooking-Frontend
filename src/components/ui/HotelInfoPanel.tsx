@@ -47,7 +47,7 @@ const HotelInfo: React.FC<HotelInfoProps> = ({ hotel }) => {
 
       {/* Опис готелю */}
       <div className="hotel-description">
-        <p>{hotel.description}</p>
+         <p>{hotel.description?.text ?? ''}</p>
       </div>
 
       <hr className="review-divider" />
