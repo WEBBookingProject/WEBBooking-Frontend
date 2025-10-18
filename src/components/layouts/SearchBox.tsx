@@ -31,7 +31,7 @@ const DateRangeInput = forwardRef<HTMLInputElement, any>(
         type="button"
         className="date-display text"
         onClick={onClick}
-        ref={ref as React.RefObject<HTMLButtonElement>}
+        ref={ref as unknown as React.RefObject<HTMLButtonElement>}
         aria-label="Select date range"
       >
         {label}
