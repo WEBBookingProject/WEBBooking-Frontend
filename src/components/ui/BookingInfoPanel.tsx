@@ -1,11 +1,13 @@
 // ============================================
-// Файл: src/components/ui/BookingRoomInfoPanel.tsx
-// Компонент: BookingRoomInfoPanel (компактна картка номера)
+// Файл: src/components/ui/BookingInfoPanel.tsx
+// Компонент: BookingInfoPanel (компактна картка номера)
 // ============================================
 
-import React from "react";
-import "../ui/BookingInfoPanel.css";
-import hotelsData from "../../data/TestFiles/testObjects.json";
+import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+import { getHotelById } from "../../services/hotelService";
+import { HotelView } from "../../models/HotelView";
+import "./BookingInfoPanel.css";
 
 interface Props {
   roomName: string;
@@ -14,24 +16,55 @@ interface Props {
   roomIndex?: number;
 }
 
-const BookingRoomInfoPanel: React.FC<Props> = ({
+const BookingInfoPanel: React.FC<Props> = ({
   roomName,
   hotelName,
   roomImage,
   roomIndex = 0,
 }) => {
-  const hotel = hotelsData.find(
-    (h: any) => h.name.toLowerCase() === hotelName.toLowerCase()
-  );
+  const { id } = useParams<{ id: string }>();
+  const [hotel, setHotel] = useState<HotelView | null>(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const loadHotel = async () => {
+      if (!id) {
+        setLoading(false);
+        return;
+      }
+
+      try {
+        const hotelData = await getHotelById(id);
+        setHotel(hotelData);
+      } catch (error) {
+        console.error("Error loading hotel data:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadHotel();
+  }, [id]);
+
+  if (loading) {
+    return (
+      <section className="content-section booking-room-container-book">
+        <div className="room-card small">Loading...</div>
+      </section>
+    );
+  }
 
   const selectedImage =
     roomImage ||
-    hotel?.images?.[roomIndex % (hotel?.images?.length || 1)] ||
-    "../icons/test/Rectangle 10.svg";
+    hotel?.photos?.[roomIndex % (hotel?.photos?.length || 1)] ||
+    "/images/default-hotel.jpg";
 
-  const price = hotel?.price_per_night
-    ? hotel.price_per_night + roomIndex * 30
+  const price = hotel?.priceForDay
+    ? hotel.priceForDay + roomIndex * 30
     : 0;
+
+  const sleepingArrangements = hotel?.description?.sleepingArrangements || "1 double bed";
+  const maxGuests = hotel?.maxGuests || 2;
 
   return (
     <section className="content-section booking-room-container-book">
@@ -47,32 +80,52 @@ const BookingRoomInfoPanel: React.FC<Props> = ({
             <img
               src="/icons/ui/bedroom.svg"
               alt="Bed"
-              style={{ width: "18px", height: "18px" }}
+              className="facility-icon" 
             />
-            <span>1 double bed</span>
+            <span>{sleepingArrangements}</span>
           </div>
 
           <div className="room-info-block">
             <img
               src="/icons/ui/profile2user.svg"
               alt="Guests"
-              style={{ width: "18px", height: "18px" }}
+              className="facility-icon" 
             />
-            <span>2 guests</span>
+            <span>{maxGuests} guests</span>
           </div>
 
-          {hotel?.facilities && (
+          {hotel?.description && (
             <div className="hotel-facilities">
-              {hotel.facilities.map((f: string, i: number) => (
-                <div className="facility-chip small" key={i}>
+              {hotel.description.wiFi && (
+                <div className="facility-chip small">
                   <img
-                    src={`/icons/ui/${f.toLowerCase()}.svg`}
-                    alt={f}
+                    src="/icons/ui/internet.svg"
+                    alt="Wi-Fi"
                     className="facility-icon"
                   />
-                  <strong>{f}</strong>
+                  <strong>wi-fi</strong>
                 </div>
-              ))}
+              )}
+              {hotel.description.parkingPlaces && (
+                <div className="facility-chip small">
+                  <img
+                    src="/icons/ui/parking.svg"
+                    alt="Parking"
+                    className="facility-icon"
+                  />
+                  <strong>parking</strong>
+                </div>
+              )}
+              {hotel.description.kitchen && (
+                <div className="facility-chip small">
+                  <img
+                    src="/icons/ui/kitchen.svg"
+                    alt="Kitchen"
+                    className="facility-icon"
+                  />
+                  <strong>kitchen</strong>
+                </div>
+              )}
             </div>
           )}
 
@@ -83,4 +136,4 @@ const BookingRoomInfoPanel: React.FC<Props> = ({
   );
 };
 
-export default BookingRoomInfoPanel;
+export default BookingInfoPanel;

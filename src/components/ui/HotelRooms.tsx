@@ -7,28 +7,24 @@ import "./HotelFacilities.css";
 
 interface Props {
   hotel: HotelView;
-  checkIn?: string;
-  checkOut?: string;
 }
 
-const HotelRooms: React.FC<Props> = ({ hotel, checkIn, checkOut }) => {
+const HotelRooms: React.FC<Props> = ({ hotel}) => {
   const navigate = useNavigate();
 
   const roomNames = ["Standard Room", "Deluxe Room", "Suite"];
 
   const handleChoose = (room: string, idx: number) => {
     const price = hotel.priceForDay + idx * 30;
-    navigate("/booking", {
+    navigate(`/hotel/${hotel.id}/booking`, {
       state: {
         roomName: room,
         hotelName: hotel.name,
         price: price,
-        propertyId: hotel.id, // ID готелю для бекенду
+        propertyId: hotel.id,
         hotelImages: hotel.photos,
         roomIndex: idx,
-        rating: hotel.rating,
-        checkIn: checkIn || new Date().toISOString(),
-        checkOut: checkOut || new Date(Date.now() + 86400000).toISOString(),
+        rating: hotel.rating
       },
     });
   };
@@ -51,12 +47,12 @@ const HotelRooms: React.FC<Props> = ({ hotel, checkIn, checkOut }) => {
               <h4 className="room-name">{room}</h4>
 
               <div className="room-info-block">
-                <img src="/icons/ui/bedroom.svg" alt="Bed" style={{ width: "20px", height: "20px" }} />
+                <img src="/icons/ui/bedroom.svg" alt="Bed" className="facility-icon"  />
                 <span>{hotel.description?.sleepingArrangements || "—"} beds</span>
               </div>
 
               <div className="room-info-block">
-                <img src="/icons/ui/profile2user.svg" alt="Guest" style={{ width: "20px", height: "20px" }} />
+                <img src="/icons/ui/profile2user.svg" alt="Guest" className="facility-icon" />
                 <span>{hotel.maxGuests} guests</span>
               </div>
 

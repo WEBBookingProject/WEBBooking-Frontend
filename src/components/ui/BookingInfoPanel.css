@@ -1,21 +1,17 @@
-/* =========================
-   Компактний блок кімнати
-========================= */
+/* Компактний блок кімнати */
 .booking-room-section.small {
   margin-top: 20px;
 }
 
 .room-card.small {
   display: flex;
-  border: 1px solid #e0e0e0;
   border-radius: 12px;
   align-items: stretch;
   overflow: hidden;
-  background: #fff;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
-  max-width: 1080px;
+  max-width: 800px;
   margin: 0 auto;
-  height: 300px;
+  height: 232px;
 }
 
 .room-image.small {
@@ -32,7 +28,7 @@
 
 .room-details-left.small {
   flex: 1;
-  padding: 16px 20px;
+  padding: 16px 30px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -40,7 +36,6 @@
 }
 
 .room-details-right.small {
-  background: #fafafa;
   padding: 10px 20px;
   display: flex;
   flex-direction: column;
@@ -48,15 +43,9 @@
   align-items: center;
 }
 
-.room-details-right.small .room-price {
-  font-size: 18px;
-  font-weight: 600;
-  color: var(--color-button, #6b3dfc);
-}
-
 .facility-chip.small {
   font-size: 12px;
-  padding: 2px 8px;
+  padding: 20px 8px;
   border-radius: 8px;
 }
 

@@ -84,7 +84,7 @@ const BookingStepPayment: React.FC<Props> = ({
         </div>
       </div>
 
-      <div className="booking-checkbox-wrapper">
+      <div className={`booking-checkbox-wrapper ${errors.agreeToTerms ? "has-error-checkbox" : ""}`}>
         <label className="custom-checkbox">
           <input
             type="checkbox"
@@ -92,7 +92,9 @@ const BookingStepPayment: React.FC<Props> = ({
             checked={formData.agreeToTerms}
             onChange={handleChange}
           />
-          I agree to the <a href="#">general booking</a> conditions and{" "} <a href="#">privacy policy</a> </label>
+          I agree to the <a href="#">general booking</a> conditions and{" "}
+          <a href="#">privacy policy</a>
+        </label>
       </div>
 
       <div className="booking-button-wrapper" style={{ flexDirection: "column", gap: "12px" }}>

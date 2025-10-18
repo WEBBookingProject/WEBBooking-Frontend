@@ -21,7 +21,7 @@ function App() {
         {/* <Route path="/hotel/:id" element={<BookingPage/>} /> */}
         <Route path="/map" element={<PlaceholderPage title="Map page" />} />
         {/* <Route path="/details/:id" element={<DetailsPage />} />  */}
-        <Route path="/booking" element={<BookingPage />} />
+        <Route path="/hotel/:id/booking" element={<BookingPage />} />
 
       </Routes>
     </BrowserRouter>
