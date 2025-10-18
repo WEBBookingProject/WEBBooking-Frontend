@@ -3,6 +3,8 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Home from "./components/pages/Home";
 import PlaceholderPage from "./components/pages/PlaceholderPage";
 import Search from "./components/pages/Search";
+import DetailsPage from "./components/pages/DetailsPage";
+import BookingPage from "./components/pages/BookingPage";
 
 function App() {
   return (
@@ -15,11 +17,12 @@ function App() {
         />
         <Route path="/signin" element={<PlaceholderPage title="Sign In" />} />
         <Route path="/search" element={<Search />} />
-        <Route
-          path="/hotel/:id"
-          element={<PlaceholderPage title="Hotel page" />}
-        />
+        <Route path="/hotel/:id" element={<DetailsPage />} />
+        {/* <Route path="/hotel/:id" element={<BookingPage/>} /> */}
         <Route path="/map" element={<PlaceholderPage title="Map page" />} />
+        {/* <Route path="/details/:id" element={<DetailsPage />} />  */}
+        <Route path="/hotel/:id/booking" element={<BookingPage />} />
+
       </Routes>
     </BrowserRouter>
   );

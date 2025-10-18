@@ -1,0 +1,184 @@
+/* Сторінка підтвердження */
+.confirmation-page {
+  max-width: 800px;
+  margin: 48px auto;
+  background-color: var(--color-white);
+  border-radius: 24px;
+  padding: 48px 40px;
+  box-shadow: 0 6px 25px rgba(0,0,0,0.12);
+  position: relative;
+  font-family: 'Arial', sans-serif;
+}
+
+/* Кнопка закриття */
+.close-btn {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: none;
+  background-color: #eee;
+  font-size: 24px;
+  cursor: pointer;
+  line-height: 36px;
+  text-align: center;
+  transition: all 0.3s;
+}
+
+.close-btn:hover {
+  background-color: var(--color-button);
+  color: var(--color-white);
+}
+
+/* Заголовок сторінки */
+.confirmation-header {
+  margin-bottom: 32px;
+}
+
+.hotel-title {
+  font-size: 48px;
+  font-weight: 700;
+  color: var(--color-black);
+  margin: 0;
+}
+
+/* Секція подяки */
+.thank-you-section {
+  margin-bottom: 32px;
+}
+
+.thank-you {
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--color-black);
+  margin-bottom: 8px;
+}
+
+.confirmation-msg {
+  font-size: 28px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  color: var(--color-button);
+}
+
+.confirmation-msg::before {
+  content: '✔';
+  display: flex; 
+  justify-content: center;
+  align-items: center;
+  width: 24px;
+  height: 24px;
+  margin-right: 10px;
+  border-radius: 50%;
+  background-color: var(--color-button);
+  color: var(--color-white);
+  font-size: 16px;
+}
+
+/* Деталі бронювання */
+.booking-details {
+  list-style: none;
+  padding-left: 0;
+  margin-bottom: 32px;
+}
+
+.booking-details li {
+  position: relative;
+  padding-left: 30px;
+  margin-bottom: 16px;
+  font-size: 18px;
+}
+
+.booking-details li::before {
+  content: '✔';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 20px;
+  height: 20px;
+  color: var(--color-black);
+  font-size: 14px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Фіолетове виділення тексту */
+.highlight {
+  color: var(--color-button);
+  font-weight: 600;
+}
+
+/* Кнопка PDF */
+.pdf-button-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-top: 32px;
+}
+
+.btn-pdf {
+  background-color: var(--color-button);
+  color: var(--color-white);
+  padding: 14px 50px;
+  font-size: 16px;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.15);
+  transition: all 0.3s;
+}
+
+.btn-pdf:hover {
+  background-color: #6126b8;
+}
+
+/* Футер рейтингу готелю */
+.hotel-rating-footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 40px;
+  text-align: center;
+}
+
+.hotel-rating-footer .hotel-name-header {
+  font-size: 28px;
+  margin-bottom: 10px;
+}
+
+.hotel-rating-footer .stars-container {
+  margin-bottom: 10px;
+}
+
+.hotel-rating-footer .rating-circle {
+  font-size: 20px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ===== Адаптивність ===== */
+@media (max-width: 768px) {
+  .hotel-title {
+    font-size: 36px;
+  }
+
+  .confirmation-msg {
+    font-size: 22px;
+  }
+
+  .booking-details li {
+    font-size: 16px;
+  }
+
+  .btn-pdf {
+    width: 100%;
+  }
+}

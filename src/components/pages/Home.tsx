@@ -71,11 +71,20 @@ export default function Home() {
 
 // --- HotelGrid ---
 function HotelGrid({ hotels }: { hotels: HotelView[] }) {
+  const groupedHotels = [];
+  for (let i = 0; i < hotels.length; i += 2) {
+    groupedHotels.push(hotels.slice(i, i + 2));
+  }
+
   return (
-    <div className="hotel-grid">
-      {hotels.map((hotel) => (
-        <HotelCard key={hotel.id} hotel={hotel} />
-      ))}
+    <div className="hotel-grid-wrapper">
+      <div className="hotel-grid">
+        {hotels.map((hotel) => (
+          <div key={hotel.id} className="hotel-card-wrapper">
+            <HotelCard hotel={hotel} />
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
@@ -130,7 +139,6 @@ function HotelCard({ hotel }: { hotel: HotelView }) {
               ★
             </span>
           ))}
-          <span className="rating-number">{hotel.rating.toFixed(1)}</span>
         </div>
         <div className="hotel-distance">Distance to center: approx.</div>
         <div className="hotel-price">${hotel.priceForDay} / night</div>

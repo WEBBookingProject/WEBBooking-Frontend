@@ -1,0 +1,336 @@
+/* Основний контейнер */
+.booking-step {
+  border-radius: 10px;
+  padding: 48px 40px;
+  box-shadow: 0 4px 25px rgba(0, 0, 0, 0.08);
+  max-width: 720px;
+  margin: 40px auto;
+  transition: all 0.3s ease;
+}
+
+/* Заголовок кроку */
+.step-header {
+  position: relative;
+  margin-bottom: 40px;
+  padding-bottom: 16px;
+  border-bottom: 2px solid #f1f1f1;
+  height: 48px;
+  justify-content: center;
+}
+
+.step-left {
+  position: absolute;
+  left: 0;
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--color-button);
+}
+
+.step-center {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 32px;
+  font-weight: 600;
+  color: var(--color-button);
+}
+
+/* Макет двох колонок */
+.form-two-columns {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+  justify-content: center;
+}
+
+/* Поля форм */
+.form-group {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 12px;
+  margin-bottom: 22px;
+  position: relative;
+}
+
+.form-group input,
+.form-group select {
+  min-width: 320px;
+  border: 1px solid #e2e2e2;
+  border-radius: 16px;
+  padding: 14px 18px;
+  font-size: 16px;
+  color: #333;
+  outline: none;
+  transition: border 0.2s, background-color 0.2s;
+}
+
+.form-group input::placeholder,
+.form-group select::placeholder {
+  color: #999;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+  border-color: var(--color-button);
+  background-color: #fff;
+}
+
+.has-error input,
+.has-error select,
+.checkbox-error-text {
+  border-color: #e63946;
+  background-color: #fff5f5;
+}
+
+.form-group select[name="cardType"] {
+  width: 60%;
+}
+
+.name-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
+  margin-bottom: 24px;
+}
+
+.name-row .form-group {
+  flex: 1;
+  margin-bottom: 0;
+}
+
+.name-row .form-group input {
+  min-width: 320px; 
+  width: 100%;
+}
+/* Текстові підказки праворуч */
+.form-group p.form-hint-inline {
+  font-size: 14px;
+  color: #666;
+  line-height: 1.4;
+  max-width: 340px;
+  margin: 0;
+  margin-left: 20px;
+}
+
+/* Кастомний чекбокс */
+.booking-checkbox-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-top: 36px;
+}
+
+.custom-checkbox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 70%;
+  max-width: 600px;
+  background: #fff;
+  padding: 14px 20px;
+  border-radius: 16px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  font-size: 16px;
+  line-height: 1.4;
+}
+
+.custom-checkbox input[type="checkbox"] {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  margin-right: 10px;
+  appearance: none;
+  border: 2px solid #ccc;
+  position: relative;
+  transition: all 0.3s;
+}
+
+.custom-checkbox input[type="checkbox"]:checked {
+  background-color: var(--color-button);
+  border-color: var(--color-button);
+}
+
+.custom-checkbox input[type="checkbox"]:checked::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 10px;
+  height: 10px;
+  background-color: #fff;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* Опції-кнопки */
+.option-buttons {
+  display: flex;
+  flex-direction: row; 
+  justify-content: center; 
+  flex-wrap: wrap;
+  gap: 16px;
+  margin: 32px 0 12px;
+}
+
+.round-option {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border: 2px;
+  box-shadow: 0 4px 25px rgba(0, 0, 0, 0.08);
+  border-radius: 10px;
+  background-color: white;
+  color: var(--color-button);
+  padding: 12px 22px;
+  font-size: 15px;
+  font-weight: 500;
+  transition: all 0.2s;
+  user-select: none;
+  color: #333;
+}
+
+.round-option::before {
+  content: "";
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 2px solid var(--color-button);
+  background: white;
+  transition: all 0.2s ease;
+}
+
+.round-option.selected::before {
+  content: "";
+  font-size: 13px;
+  color: #fff;
+  background-color: var(--color-button);
+  border-color: var(--color-button);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Кнопки управління */
+.booking-button-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
+  margin-top: 40px;
+}
+
+.btn-continue,
+.btn-outline,
+.btn-back {
+  border-radius: 24px;
+  width: 300px;
+  padding: 16px 0;
+  font-size: 16px;
+  font-weight: 600;
+  border: none;
+  text-align: center;
+  transition: all 0.3s ease;
+  margin-bottom: 20px;
+}
+
+.btn-continue {
+  background-color: #6b3dfc;
+  color: #fff;
+}
+
+.btn-continue:hover {
+  background-color: #5831d9;
+}
+
+.btn-outline {
+  background-color: transparent;
+  border: 2px solid #6b3dfc;
+  color: #6b3dfc;
+}
+
+.btn-outline:hover {
+  background-color: #f6f3ff;
+}
+
+.btn-back {
+  background-color: #eee;
+  color: #333;
+}
+
+.btn-back:hover {
+  background-color: #ddd;
+}
+
+
+/* Вузькі поля */
+.form-narrow input,
+.form-narrow select {
+  align-self: center; 
+}
+
+.payment-fields  {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+  width: 100%;
+  text-align: left;
+}
+
+.booking-checkbox-wrapper.has-error-checkbox .custom-checkbox {
+  border: 1px solid #e63946;
+  background-color: #fff5f5;
+}
+
+/* Адаптивність */
+@media (max-width: 900px) {
+  .booking-step {
+    padding: 40px 24px; 
+  }
+
+  .form-two-columns {
+    flex-direction: column;
+    align-items: center; 
+  }
+
+  .name-row {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .form-group {
+    flex-direction: column;
+    align-items: center; 
+  }
+
+  .form-group input,
+  .form-group select,
+  .form-narrow input,
+  .form-narrow select {
+    width: 90%; 
+    min-width: 0;
+  }
+
+  .form-group p.form-hint-inline {
+    margin-top: 6px;
+    text-align: center;
+    max-width: 90%;
+  }
+
+  .option-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .btn-continue,
+  .btn-outline,
+  .btn-back {
+    width: 90%;
+  }
+
+  .custom-checkbox {
+    width: 90%;
+  }
+}

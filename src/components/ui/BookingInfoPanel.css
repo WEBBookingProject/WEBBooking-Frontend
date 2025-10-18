@@ -1,0 +1,72 @@
+/* Компактний блок кімнати */
+.booking-room-section.small {
+  margin-top: 20px;
+}
+
+.room-card.small {
+  display: flex;
+  border-radius: 12px;
+  align-items: stretch;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  max-width: 800px;
+  margin: 0 auto;
+  height: 232px;
+}
+
+.room-image.small {
+  flex-basis: 320px;
+  height: 100%;
+  overflow: hidden;
+}
+
+.room-image.small img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.room-details-left.small {
+  flex: 1;
+  padding: 16px 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 6px;
+}
+
+.room-details-right.small {
+  padding: 10px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.facility-chip.small {
+  font-size: 12px;
+  padding: 20px 8px;
+  border-radius: 8px;
+}
+
+.hotel-facilities {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+@media (max-width: 900px) {
+  .room-card.small {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .room-image.small {
+    flex-basis: auto;
+    height: 180px;
+  }
+
+  .room-details-right.small {
+    padding: 12px;
+  }
+}

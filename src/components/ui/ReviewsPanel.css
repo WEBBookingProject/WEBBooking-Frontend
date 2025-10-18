@@ -1,7 +1,7 @@
 .reviews-panel {
   margin-top: 48px;
-  text-align: center; 
-  font-family: 'Nunito Sans', sans-serif; 
+  text-align: center;
+  font-family: 'Nunito Sans', sans-serif;
 }
 
 .reviews-panel .reviews-title {
@@ -16,13 +16,14 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 24px;
-  margin: 24px auto 0 auto; 
-  max-width: 1200px; 
+  margin: 24px auto 0 auto;
+  max-width: 1200px;
   width: 100%;
-  justify-items: center; 
+  justify-items: center;
+  box-sizing: border-box;
 }
 
-.reviews-panel .review-card {         
+.reviews-panel .review-card {
   background-color: var(--color-white);
   border-radius: 12px;
   padding: 16px;
@@ -31,6 +32,9 @@
   display: flex;
   flex-direction: column;
   gap: 12px;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 400px;  
 }
 
 .reviews-panel .review-header {
@@ -76,5 +80,58 @@
   font-size: 16px;
   color: var(--color-black);
   line-height: 1.4;
+}
+
+@media (max-width: 768px) {
+  .reviews-panel {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+
+  
+  .reviews-panel .reviews-cards {
+    display: flex;                    
+    flex-direction: row;
+    gap: 16px;                        
+    overflow-x: auto;                  
+    -webkit-overflow-scrolling: touch; 
+    scroll-snap-type: x mandatory;    
+    padding-bottom: 12px;             
+    margin: 8px auto 0 auto;
+    width: 100%;
+    box-sizing: border-box;
+    justify-content: flex-start;      
+  }
+
+  .reviews-panel .review-card {
+    flex: 0 0 calc(84%);      
+    max-width: calc(84%);     
+    min-width: 260px;         
+    scroll-snap-align: start; 
+    margin: 0;
+  }
+
+  .reviews-panel .review-card {
+    padding: 14px;
+    border-radius: 10px;
+  }
+
+
+  .reviews-panel .reviews-cards::-webkit-scrollbar-thumb {
+    background: rgba(0,0,0,0.12);
+    border-radius: 999px;
+  }
+  .reviews-panel .reviews-cards {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(0,0,0,0.12) transparent;
+  }
+
+  .reviews-panel .review-avatar {
+    width: 44px;
+    height: 44px;
+  }
+  .reviews-panel .review-text {
+    font-size: 15px;
+  }
 }
 

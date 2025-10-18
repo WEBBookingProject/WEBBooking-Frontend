@@ -10,7 +10,7 @@ import { HotelView } from "../../models/HotelView";
 import { searchHotels } from "../../services/hotelService";
 
 const RATINGS = ["1+", "2+", "3+", "4+", "5+", "6+", "7+", "8+", "9+"];
-const TYPES = ["Hotel", "Apartment", "Hostel"];
+const TYPES = ["Hotel", "Apartment", "Hostel", "Studio"];
 const CATEGORIES = ["Luxury", "Budget", "Business", "Family"];
 const FACILITIES = ["Kitchen", "WiFi", "Free WiFi", "Parking"];
 
@@ -47,6 +47,7 @@ export default function FilterPanel({ onApplyFilters }: FilterPanelProps) {
       const filters = {
         maxPrice,
         rating: ratingNumber,
+        type: types[0] || undefined,
         category: categories[0] || undefined,
         kitchen: facilities.includes("Kitchen"),
         wifi: facilities.includes("WiFi"),
@@ -115,7 +116,6 @@ export default function FilterPanel({ onApplyFilters }: FilterPanelProps) {
           </label>
         ))}
       </div>
-
       {/* Category */}
       <div className="filter-section">
         <h3>Category</h3>
