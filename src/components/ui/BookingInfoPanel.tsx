@@ -103,7 +103,7 @@ const BookingInfoPanel: React.FC<Props> = ({
                     alt="Wi-Fi"
                     className="facility-icon"
                   />
-                  <strong>wi-fi</strong>
+                  <span>wi-fi</span>
                 </div>
               )}
               {hotel.description.parkingPlaces && (
@@ -113,7 +113,7 @@ const BookingInfoPanel: React.FC<Props> = ({
                     alt="Parking"
                     className="facility-icon"
                   />
-                  <strong>parking</strong>
+                  <span>parking</span>
                 </div>
               )}
               {hotel.description.kitchen && (
@@ -123,7 +123,7 @@ const BookingInfoPanel: React.FC<Props> = ({
                     alt="Kitchen"
                     className="facility-icon"
                   />
-                  <strong>kitchen</strong>
+                  <span>kitchen</span>
                 </div>
               )}
             </div>

@@ -40,10 +40,10 @@ const safeItems: SafeItem[] = [
   },
 ];
 
-export default function SafeWithUs() {
+export default function ImportantInf() {
   return (
     <div className="safe-panel">
-      <h2 className="safe-title">Safe With Us</h2>
+      <h2 className="tittle">Important information</h2>
 
       <div className="safe-grid">
         {safeItems.map((item) => (

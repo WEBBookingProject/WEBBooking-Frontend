@@ -87,6 +87,37 @@
   width: 60%;
 }
 
+/* Булька з помилкою */
+.error-bubble {
+  position: absolute;
+  top: -32px;
+  background-color: #e63946;
+  color: white;
+  padding: 6px 12px;
+  border-radius: 12px;
+  font-size: 13px;
+  white-space: nowrap;
+  z-index: 10;
+}
+
+.error-bubble::after {
+  content: "";
+  position: absolute;
+  bottom: -4px;
+  left: 20px;
+  width: 8px;
+  height: 8px;
+  background-color: #e63946;
+  transform: rotate(45deg);
+}
+
+.error-bubble.checkbox-error {
+  top: 50%;
+  right: -220px;
+  transform: translateY(-50%);
+}
+
+/* Форма */
 .name-row {
   display: flex;
   justify-content: center;
@@ -104,6 +135,7 @@
   min-width: 320px; 
   width: 100%;
 }
+
 /* Текстові підказки праворуч */
 .form-group p.form-hint-inline {
   font-size: 14px;

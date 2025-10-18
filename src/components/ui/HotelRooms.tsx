@@ -60,19 +60,19 @@ const HotelRooms: React.FC<Props> = ({ hotel}) => {
                 {hotel.description?.wiFi && (
                   <div className="facility-chip">
                     <img src="/icons/ui/internet.svg" alt="Wi-Fi" className="facility-icon" />
-                    <strong>wi-fi</strong>
+                    <span>wi-fi</span>
                   </div>
                 )}
                 {hotel.description?.parkingPlaces && (
                   <div className="facility-chip">
                     <img src="/icons/ui/parking.svg" alt="Parking" className="facility-icon" />
-                    <strong>parking</strong>
+                    <span>parking</span>
                   </div>
                 )}
                 {hotel.description?.kitchen && (
                   <div className="facility-chip">
                     <img src="/icons/ui/kitchen.svg" alt="Kitchen" className="facility-icon" />
-                    <strong>kitchen</strong>
+                    <span>kitchen</span>
                   </div>
                 )}
               </div>
