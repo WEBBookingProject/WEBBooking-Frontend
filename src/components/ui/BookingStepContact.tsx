@@ -7,19 +7,19 @@ interface Props {
   handleNext: () => void;
 }
 
-const BookingStepPersonal: React.FC<Props> = ({ formData, handleChange, handleNext }) => {
+const BookingStepContact: React.FC<Props> = ({
+  formData,
+  handleChange,
+  handleNext,
+}) => {
   const [errors, setErrors] = useState({
-    firstName: false,
-    lastName: false,
-    email: false,
-    confirmEmail: false,
+    country: false,
+    phone: false,
   });
 
   const [errorMessages, setErrorMessages] = useState({
-    firstName: "",
-    lastName: "",
-    email: "",
-    confirmEmail: "",
+    country: "",
+    phone: "",
   });
 
   const [selected, setSelected] = useState<string[]>([]);
@@ -35,29 +35,19 @@ const BookingStepPersonal: React.FC<Props> = ({ formData, handleChange, handleNe
     let message = "";
 
     switch (name) {
-      case "firstName":
-      case "lastName":
+      case "country":
         if (!value.trim()) {
           isValid = false;
-          message = "Поле не заповнене";
-        } else if (/\d/.test(value)) {
-          isValid = false;
-          message = "Ім'я не може містити цифри";
+          message = "The field is not filled in";
         }
         break;
-      case "email":
+      case "phone":
         if (!value.trim()) {
           isValid = false;
-          message = "Поле не заповнене";
-        } else if (!value.includes("@")) {
+          message = "The field is not filled in";
+        } else if (!/^[+]?[\d\s()-]+$/.test(value)) {
           isValid = false;
-          message = "Email повинен містити @";
-        }
-        break;
-      case "confirmEmail":
-        if (value !== formData.email) {
-          isValid = false;
-          message = "Email не співпадає";
+          message = "The phone number can only contain numbers and the "+" sign";
         }
         break;
     }
@@ -69,7 +59,6 @@ const BookingStepPersonal: React.FC<Props> = ({ formData, handleChange, handleNe
     const { name, value } = e.target;
     handleChange(e);
 
-    // Прибираємо помилку при введенні
     if (errors[name as keyof typeof errors]) {
       const validation = validateField(name, value);
       setErrors((prev) => ({ ...prev, [name]: !validation.isValid }));
@@ -81,7 +70,7 @@ const BookingStepPersonal: React.FC<Props> = ({ formData, handleChange, handleNe
     const newErrors: any = {};
     const newMessages: any = {};
 
-    ["firstName", "lastName", "email", "confirmEmail"].forEach((field) => {
+    ["country", "phone"].forEach((field) => {
       const validation = validateField(field, formData[field] || "");
       newErrors[field] = !validation.isValid;
       newMessages[field] = validation.message;
@@ -97,78 +86,39 @@ const BookingStepPersonal: React.FC<Props> = ({ formData, handleChange, handleNe
     <>
       <div className="booking-step">
         <div className="step-header">
-          <div className="step-left">1/3</div>
+          <div className="step-left">2/3</div>
           <div className="step-center">Booking</div>
         </div>
 
         <div className="form-two-columns">
           <div className="form-left">
-            <div className="name-row">
-              <div className={`form-group ${errors.firstName ? "has-error" : ""}`}>
-                <input
-                  type="text"
-                  name="firstName"
-                  value={formData.firstName}
-                  onChange={handleFieldChange}
-                  placeholder="Name"
-                />
-                {errors.firstName && (
-                  <span className="error-bubble">{errorMessages.firstName}</span>
-                )}
-              </div>
-
-              <div className={`form-group ${errors.lastName ? "has-error" : ""}`}>
-                <input
-                  type="text"
-                  name="lastName"
-                  value={formData.lastName}
-                  onChange={handleFieldChange}
-                  placeholder="Surname"
-                />
-                {errors.lastName && (
-                  <span className="error-bubble">{errorMessages.lastName}</span>
-                )}
-              </div>
+            <div className={`form-group ${errors.country ? "has-error" : ""}`}>
+              <input
+                type="text"
+                name="country"
+                value={formData.country}
+                onChange={handleFieldChange}
+                placeholder="Country"
+              />
+              {errors.country && (
+                <span className="error-bubble">{errorMessages.country}</span>
+              )}
             </div>
 
-            <div className={`form-group ${errors.email ? "has-error" : ""} form-inline`}>
+            <div className={`form-group ${errors.phone ? "has-error" : ""} form-inline`}>
               <input
-                type="email"
-                name="email"
-                value={formData.email}
+                type="tel"
+                name="phone"
+                value={formData.phone}
                 onChange={handleFieldChange}
-                placeholder="Email"
+                placeholder="Phone number"
               />
               <p className="form-hint-inline">
-                To this address we will send a confirmation and a guide to the city!
+                In order for administration to be able to contact you
               </p>
-              {errors.email && (
-                <span className="error-bubble">{errorMessages.email}</span>
+              {errors.phone && (
+                <span className="error-bubble">{errorMessages.phone}</span>
               )}
-            </div>
-
-            <div className={`form-group ${errors.confirmEmail ? "has-error" : ""}`}>
-              <input
-                type="email"
-                name="confirmEmail"
-                value={formData.confirmEmail}
-                onChange={handleFieldChange}
-                placeholder="Confirm Email"
-              />
-              {errors.confirmEmail && (
-                <span className="error-bubble">{errorMessages.confirmEmail}</span>
-              )}
-            </div>
-
-            <div className="form-group form-inline">
-              <input
-                type="password"
-                name="password"
-                value={formData.password}
-                onChange={handleChange}
-                placeholder="Choose a password for your booking"
-              />
-              <p className="form-hint-inline">It's optional</p>
             </div>
           </div>
         </div>
@@ -180,14 +130,14 @@ const BookingStepPersonal: React.FC<Props> = ({ formData, handleChange, handleNe
           className={`round-option ${selected.includes("guide") ? "selected" : ""}`}
           onClick={() => toggleOption("guide")}
         >
-          I want to get a city guide!
+          Call me to confirm booking!
         </button>
         <button
           type="button"
           className={`round-option ${selected.includes("change") ? "selected" : ""}`}
           onClick={() => toggleOption("change")}
         >
-          The ability to change the booking (until 00.00.2025)
+          Send me an email to confirm booking!
         </button>
       </div>
 
@@ -200,4 +150,4 @@ const BookingStepPersonal: React.FC<Props> = ({ formData, handleChange, handleNe
   );
 };
 
-export default BookingStepPersonal;
+export default BookingStepContact;

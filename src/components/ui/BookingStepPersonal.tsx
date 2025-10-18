@@ -39,25 +39,25 @@ const BookingStepPersonal: React.FC<Props> = ({ formData, handleChange, handleNe
       case "lastName":
         if (!value.trim()) {
           isValid = false;
-          message = "Поле не заповнене";
+          message = "The field is not filled in";
         } else if (/\d/.test(value)) {
           isValid = false;
-          message = "Ім'я не може містити цифри";
+          message = "The name cannot contain numbers";
         }
         break;
       case "email":
         if (!value.trim()) {
           isValid = false;
-          message = "Поле не заповнене";
+          message = "The field is not filled in";
         } else if (!value.includes("@")) {
           isValid = false;
-          message = "Email повинен містити @";
+          message = "Email must contain @";
         }
         break;
       case "confirmEmail":
         if (value !== formData.email) {
           isValid = false;
-          message = "Email не співпадає";
+          message = "Email does not match";
         }
         break;
     }

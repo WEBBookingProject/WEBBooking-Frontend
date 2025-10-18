@@ -41,7 +41,7 @@ const BookingStepPayment: React.FC<Props> = ({
         const cleanNumber = value.replace(/\s/g, "");
         if (!value.trim()) {
           isValid = false;
-          message = "Поле не заповнене";
+          message = "The field is not filled in";
         } else if (cleanNumber.length !== 16 || !/^\d+$/.test(cleanNumber)) {
           isValid = false;
           message = "Номер картки повинен містити 16 цифр";
@@ -50,7 +50,7 @@ const BookingStepPayment: React.FC<Props> = ({
       case "expiry":
         if (!value.trim()) {
           isValid = false;
-          message = "Поле не заповнене";
+          message = "The field is not filled in";
         } else if (!/^\d{2}\/\d{2}$/.test(value)) {
           isValid = false;
           message = "Формат повинен бути MM/YY";
