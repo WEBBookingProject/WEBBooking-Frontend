@@ -1,74 +1,86 @@
-// ============================================
-// Файл: src/components/ui/BookingStepContact.tsx
-// Компонент: BookingStepContact
-// Використовується: на сторінці BookingPage (крок 2)
-// Опис: Форма для введення країни та номера телефону користувача
-// ============================================
-
-import React from "react";
+import React, { useState } from "react";
 import "../ui/BookingStep.css";
 
 interface Props {
   formData: any;
   handleChange: (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => void;
   handleNext: () => void;
-  handleBack: () => void;
 }
 
 const BookingStepContact: React.FC<Props> = ({
   formData,
   handleChange,
   handleNext,
-  handleBack,
 }) => {
-  // Перевірка заповнення обов’язкових полів перед переходом
+  const [errors, setErrors] = useState({
+    country: false,
+    phone: false,
+  });
+  const [selected, setSelected] = useState<string | null>(null);
+
+  const toggleOption = (value: string) => {
+    setSelected((prev) => (prev === value ? null : value));
+  };
+
   const handleContinue = () => {
-    if (!formData.country || !formData.phone) {
-      alert("Please fill in all fields.");
-      return;
-    }
-    handleNext();
+    const newErrors = { country: !formData.country, phone: !formData.phone };
+    setErrors(newErrors);
+    if (!Object.values(newErrors).some((v) => v)) handleNext();
   };
 
   return (
     <>
-      {/* Заголовок кроку */}
       <div className="booking-step">
         <div className="step-header">
           <div className="step-left">2/3</div>
           <div className="step-center">Booking</div>
         </div>
 
-        {/* Поля введення даних */}
-        <div className="form-content">
-          <div className="form-row">
-            <div className="form-group">
-              <label>Country *</label>
+        <div className="form-two-columns">
+          <div className="form-left">
+            <div className={`form-group ${errors.country ? "has-error" : ""}`}>
               <input
                 type="text"
                 name="country"
                 value={formData.country}
                 onChange={handleChange}
-                required
-                placeholder="Ukraine"
+                placeholder="Country"
               />
             </div>
-            <div className="form-group">
-              <label>Phone *</label>
+
+            <div className={`form-group ${errors.phone ? "has-error" : ""} form-inline`}>
               <input
                 type="tel"
                 name="phone"
                 value={formData.phone}
                 onChange={handleChange}
-                required
-                placeholder="+380 XX XXX XX XX"
+                placeholder="Phone number"
               />
+              <p className="form-hint-inline">
+                In order for administration to be able to contact you
+              </p>
             </div>
           </div>
         </div>
       </div>
 
-      {/* Кнопка переходу на наступний крок */}
+      <div className="option-buttons">
+        <button
+          type="button"
+          className={`round-option ${selected === "guide" ? "selected" : ""}`}
+          onClick={() => toggleOption("guide")}
+        >
+          Call me to confirm  booking!
+        </button>
+        <button
+          type="button"
+          className={`round-option ${selected === "change" ? "selected" : ""}`}
+          onClick={() => toggleOption("change")}
+        >
+          Send me an email to confirm  booking!
+        </button>
+      </div>
+        
       <div className="booking-button-wrapper">
         <button type="button" onClick={handleContinue} className="btn-continue">
           Continue

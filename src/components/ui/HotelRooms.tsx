@@ -1,53 +1,92 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
-import { HotelView } from '../../models/HotelView';
-import './HotelRooms.css';
+import React from "react";
+import { useNavigate } from "react-router-dom";
+import { HotelView } from "../../models/HotelView";
+import "./HotelRooms.css";
+import "./HotelList.css";
+import "./HotelFacilities.css";
 
 interface Props {
   hotel: HotelView;
+  checkIn?: string;
+  checkOut?: string;
 }
 
-const HotelRooms: React.FC<Props> = ({ hotel }) => {
+const HotelRooms: React.FC<Props> = ({ hotel, checkIn, checkOut }) => {
   const navigate = useNavigate();
-  const rooms = ['Standard Room', 'Deluxe Room'];
+
+  const roomNames = ["Standard Room", "Deluxe Room", "Suite"];
 
   const handleChoose = (room: string, idx: number) => {
     const price = hotel.priceForDay + idx * 30;
-    navigate('/booking', {
+    navigate("/booking", {
       state: {
         roomName: room,
         hotelName: hotel.name,
         price: price,
+        propertyId: hotel.id, // ID готелю для бекенду
+        hotelImages: hotel.photos,
+        roomIndex: idx,
+        rating: hotel.rating,
+        checkIn: checkIn || new Date().toISOString(),
+        checkOut: checkOut || new Date(Date.now() + 86400000).toISOString(),
       },
     });
   };
 
   return (
     <section className="content-section" id="hotel-rooms-section">
-      <h2 className="tittleAR">Available Rooms</h2>
+      <h2 className="tittle">Available Rooms</h2>
+
       <div className="rooms-list">
-        {rooms.map((room, idx) => (
-          <div key={idx} className="room-card">
+        {roomNames.map((room, idx) => (
+          <div className="room-card" key={idx}>
             <div className="room-image">
               <img
-                src={hotel.photos[idx % hotel.photos.length] || '/images/default-hotel.jpg'}
+                src={hotel.photos[idx % hotel.photos.length] || "/images/default-hotel.jpg"}
                 alt={room}
               />
             </div>
+
             <div className="room-details-left">
               <h4 className="room-name">{room}</h4>
-              <span className="room-info">1 double bed</span>
-              <span className="room-info">2 guests</span>
-              <p className="room-status">Free Cancel</p>
+
+              <div className="room-info-block">
+                <img src="/icons/ui/bedroom.svg" alt="Bed" style={{ width: "20px", height: "20px" }} />
+                <span>{hotel.description?.sleepingArrangements || "—"} beds</span>
+              </div>
+
+              <div className="room-info-block">
+                <img src="/icons/ui/profile2user.svg" alt="Guest" style={{ width: "20px", height: "20px" }} />
+                <span>{hotel.maxGuests} guests</span>
+              </div>
+
+              <div className="hotel-facilities">
+                {hotel.description?.wiFi && (
+                  <div className="facility-chip">
+                    <img src="/icons/ui/internet.svg" alt="Wi-Fi" className="facility-icon" />
+                    <strong>wi-fi</strong>
+                  </div>
+                )}
+                {hotel.description?.parkingPlaces && (
+                  <div className="facility-chip">
+                    <img src="/icons/ui/parking.svg" alt="Parking" className="facility-icon" />
+                    <strong>parking</strong>
+                  </div>
+                )}
+                {hotel.description?.kitchen && (
+                  <div className="facility-chip">
+                    <img src="/icons/ui/kitchen.svg" alt="Kitchen" className="facility-icon" />
+                    <strong>kitchen</strong>
+                  </div>
+                )}
+              </div>
+
+              <p className="room-status">✓ FREE cancellation</p>
             </div>
+
             <div className="room-details-right">
               <div className="room-price">${hotel.priceForDay + idx * 30}</div>
-              <button
-                className="btn-choose"
-                onClick={() => handleChoose(room, idx)}
-              >
-                Choose
-              </button>
+              <button className="btn-choose" onClick={() => handleChoose(room, idx)}>Choose</button>
               <button className="btn-more-info">More Info</button>
             </div>
           </div>

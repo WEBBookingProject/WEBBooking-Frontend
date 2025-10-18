@@ -1,12 +1,3 @@
-.tittleAR {
-  text-align: center;
-  font-weight: 400;
-  font-size: 16px;
-  color: var(--color-gray);
-  text-transform: uppercase;
-  margin-bottom: 24px;
-}
-
 .rooms-list {
   display: flex;
   flex-direction: column;
@@ -18,9 +9,9 @@
   border: 1px solid var(--color-border);
   border-radius: 15px;
   align-items: stretch;
+  overflow: hidden;
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
   transition: box-shadow 0.2s;
-  overflow: hidden;
 }
 
 .room-card:hover {
@@ -29,43 +20,72 @@
 
 .room-image {
   flex-shrink: 0;
-  width: 300px;
-  display: flex;
+  flex-basis: 340px;
+  height: 100%;
+  overflow: hidden;
 }
 
 .room-image img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  border-radius: 0 15px 15px 0;
+  display: block;
 }
 
 .room-details-left {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  gap: 8px;
   flex: 1;
   padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 
 .room-name {
-  font-size: 32px;
+  font-size: 20px;
   font-weight: bold;
   color: var(--color-black);
-  margin-top: 16px;
+  margin: 0;
+  margin-bottom: 10px;
 }
 
-.room-info {
-  font-size: 15px;
+.room-info-block {
+  display: flex;
+  gap: 16px;
+  font-size: 14px;
   color: #4b5563;
+}
+
+.room-info-block span {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.hotel-facilities {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-top: 20px;
+  color: var(--color-gray);
+}
+
+.facility-chip {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+}
+
+.facility-icon {
+  width: 20px;
+  height: 20px;
 }
 
 .room-status {
   font-size: 14px;
   color: var(--color-highlight);
   font-weight: 600;
-  margin-top: 24px;
+  margin-top: 12px;
 }
 
 .room-details-right {
@@ -99,21 +119,12 @@
   border: none;
 }
 
-.btn-choose:hover {
-  background-color: #7c3aed;
-}
-
 .btn-more-info {
   background-color: var(--color-white);
   color: var(--color-button);
   border: 2px solid var(--color-button);
 }
 
-.btn-more-info:hover {
-  background-color: #f3e8ff;
-}
-
-/* Адаптив */
 @media (max-width: 760px) {
   .room-card {
     flex-direction: column;
@@ -124,12 +135,10 @@
   .room-image {
     width: 100%;
     height: 220px;
+    margin: 0 auto;
   }
 
   .room-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
     border-radius: 15px;
   }
 
@@ -142,26 +151,31 @@
 
   .room-details-right {
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
     padding: 12px;
   }
 
-  .price-button-group {
+  .price-choose-block {
     display: flex;
-    flex-direction: row; 
-    gap: 12px;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
   }
 
-  .room-price {
-    font-size: 28px;
-    font-weight: bold;
-    color: var(--color-highlight);
+  .btn-group {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    gap: 8px;
   }
 
   .btn-choose,
   .btn-more-info {
-    width: 160px;
-    padding: 14px 0;
+    width: 48%;
+    padding: 12px 0;
     font-size: 16px;
   }
 }

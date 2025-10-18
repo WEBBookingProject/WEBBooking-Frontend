@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { HotelView } from '../../models/HotelView';
-import { CommentView } from '../../models/CommentView';
-import exampleComment from '../../data/TestFiles/testComments.json';
-import './HotelInfoPanel.css';
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { HotelView } from "../../models/HotelView";
+import { CommentView } from "../../models/CommentView";
+import exampleComment from "../../data/TestFiles/testComments.json";
+import "./HotelInfoPanel.css";
 
 interface HotelInfoProps {
   hotel: HotelView;
@@ -15,12 +15,14 @@ const HotelInfo: React.FC<HotelInfoProps> = ({ hotel }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const nextComment = () => {
-    setCurrentIndex(prevIndex => prevIndex === comments.length - 1 ? 0 : prevIndex + 1);
+    setCurrentIndex((prevIndex) =>
+      prevIndex === comments.length - 1 ? 0 : prevIndex + 1
+    );
   };
 
   const scrollToRooms = () => {
-    const roomsSection = document.getElementById('hotel-rooms-section');
-    roomsSection?.scrollIntoView({ behavior: 'smooth' });
+    const roomsSection = document.getElementById("hotel-rooms-section");
+    roomsSection?.scrollIntoView({ behavior: "smooth" });
   };
 
   const currentComment = comments[currentIndex];
@@ -35,11 +37,12 @@ const HotelInfo: React.FC<HotelInfoProps> = ({ hotel }) => {
             <span className="price-label">per night</span>
           </div>
           <div className="location-block">
-            <span className="location-text">{hotel.country} | {hotel.city}</span>
+            <img src="/icons/ui/location.svg"  alt="location"/>
+            <span className="location-text">{hotel.address}</span>
           </div>
         </div>
 
-        {/* Кнопка Book з прокруткою */}
+        {/* Кнопка Book */}
         <button className="btn-book" onClick={scrollToRooms}>
           Book
         </button>
@@ -47,7 +50,7 @@ const HotelInfo: React.FC<HotelInfoProps> = ({ hotel }) => {
 
       {/* Опис готелю */}
       <div className="hotel-description">
-         <p>{hotel.description?.text ?? ''}</p>
+        <p>{hotel.description?.text ?? ""}</p>
       </div>
 
       <hr className="review-divider" />
@@ -56,9 +59,10 @@ const HotelInfo: React.FC<HotelInfoProps> = ({ hotel }) => {
       <div className="hotel-review wide">
         <div className="review-header">
           <div className="review-user">
+            <img src={currentComment.avatarUrl} alt={currentComment.name} className="review-avatar"/>
             <div className="review-name-hotel">
               <span className="review-name">{currentComment.name}</span>
-              <span className="review-hotel">{currentComment.hotelName}</span>
+              <span className="review-hotel">{hotel.name}</span>
             </div>
           </div>
           <span className="review-time">{currentComment.daysAgo} days ago</span>
@@ -66,7 +70,7 @@ const HotelInfo: React.FC<HotelInfoProps> = ({ hotel }) => {
         <p className="review-text">{currentComment.text}</p>
 
         <button className="next-comment-btn" onClick={nextComment}>
-          Next
+          <img src="/icons/ui/back.svg"  alt="Next" className="next-com"/>
         </button>
       </div>
     </div>

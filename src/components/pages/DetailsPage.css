@@ -69,6 +69,15 @@
   margin-bottom: 32px;
 }
 
+.tittle {
+  text-align: center;
+  font-weight: 400;
+  font-size: 16px;
+  color: var(--color-gray);
+  text-transform: uppercase;
+  margin-bottom: 24px;
+}
+
 /* Адаптивність для планшетів */
 @media (max-width: 1024px) {
   .hero-section {

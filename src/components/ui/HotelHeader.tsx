@@ -44,7 +44,7 @@ const HotelHeader: React.FC<HotelHeaderProps> = ({ name, rating, onBack }) => {
       <div className="hotel-header-main">
         <div className="hotel-title-center">
           {renderStars(rating)}
-          <h1 className="hotel-name-header" style={{ color: '#8b5cf6', textAlign: 'center' }}>{name}</h1>
+          <h1 className="hotel-name-header">{name}</h1>
         </div>
 
         <div className="right-controls">

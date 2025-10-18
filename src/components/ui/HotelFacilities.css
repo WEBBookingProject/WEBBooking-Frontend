@@ -3,16 +3,6 @@
   margin-top: 48px;
 }
 
-/* Заголовок секції */
-.tittleF {
-  text-align: center;
-  font-weight: 400;
-  font-size: 16px;
-  color: var(--color-gray);
-  text-transform: uppercase;
-  margin-bottom: 24px;
-}
-
 /* Сітка з об'єктами зручностей */
 .amenities-grid {
   display: grid;
@@ -22,18 +12,46 @@
 
 /* Окрема зручність */
 .amenity-item {
-  padding: 8px 12px;
-  border-radius: 8px;
-  font-size: 15px;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 10px 12px;
 }
+
+.amenity-icon {
+  width: 25px;
+  height: 25px;
+}
+
+.amenity-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.amenity-text strong {
+  font-weight: 600;
+  color: var(--color-gray);
+}
+
+.amenity-status {
+  font-size: 16px;
+  color: var(--color-gray);
+  margin-top: 10px;
+}
+
 
 /* Адаптивність для мобільних */
 @media (max-width: 768px) {
   .amenities-grid {
     grid-template-columns: repeat(2, 1fr);
+    justify-items: center;
   }
 
   .amenity-item {
     font-size: 13px;
+  }
+
+  .amenity-text {
+    align-items: center;
   }
 }

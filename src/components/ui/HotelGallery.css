@@ -71,10 +71,6 @@
   background: none;
 }
 
-.thumbnail:hover {
-  border-color: #d1d5db;
-}
-
 .thumbnail.active {
   border-color: #6366f1;
 }

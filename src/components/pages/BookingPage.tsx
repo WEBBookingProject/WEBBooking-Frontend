@@ -82,14 +82,11 @@ const BookingPage: React.FC = () => {
 
   // Навігація між кроками
   const handleNext = () => setCurrentStep(prev => prev + 1);
-  const handleBack = () => setCurrentStep(prev => Math.max(prev - 1, 1));
 
   // Підтвердження бронювання
   const handleSubmit = () => {
-    if (!formData.agreeToTerms) {
-      alert("Please agree to the terms and conditions before confirming.");
-      return;
-    }
+    // Валідація тепер повністю обробляється в BookingStepPayment,
+    // тому дублююча перевірка тут не потрібна.
     console.log({ ...formData, roomName, hotelName });
     setBookingConfirmed(true);
   };
@@ -103,9 +100,9 @@ const BookingPage: React.FC = () => {
       case 1:
         return <BookingStepPersonal formData={formData} handleChange={handleChange} handleNext={handleNext} />;
       case 2:
-        return <BookingStepContact formData={formData} handleChange={handleChange} handleNext={handleNext} handleBack={handleBack} />;
+        return <BookingStepContact formData={formData} handleChange={handleChange} handleNext={handleNext} />;
       case 3:
-        return <BookingStepPayment formData={formData} handleChange={handleChange} handleBack={handleBack} handleSubmit={handleSubmit} />;
+        return <BookingStepPayment formData={formData} handleChange={handleChange} handleSubmit={handleSubmit} />;
       default:
         return null;
     }

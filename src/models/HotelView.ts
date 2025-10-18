@@ -13,9 +13,6 @@ export interface HotelView {
   longitudeCoordinate: number;
   category: string;
   photos: string[];
-  facilities?: string[];
-  country?: string;
-  city?: string;
   createdAt: string;
   contactPhone: string;
   contactEmail: string;

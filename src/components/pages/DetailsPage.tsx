@@ -9,6 +9,7 @@ import HotelInfoPanel from "../ui/HotelInfoPanel";
 import HotelReviews from "../ui/HotelReviews";
 import HotelFacilities from "../ui/HotelFacilities";
 import HotelRooms from "../ui/HotelRooms";
+import SafeWithUs from "../ui/SafeWithUs";
 import HotelFAQ from "../ui/HotelFAQ";
 import { CommentView } from "../../models/CommentView";
 import testCommentsData from "../../data/TestFiles/testComments.json";
@@ -54,6 +55,7 @@ const DetailsPage = () => {
           </section>
 
           <HotelFacilities hotel={hotel} />
+          <SafeWithUs />
           <HotelRooms hotel={hotel} />
           <HotelReviews hotel={hotel} comments={testComments} />
           <HotelFAQ hotel={hotel} />
