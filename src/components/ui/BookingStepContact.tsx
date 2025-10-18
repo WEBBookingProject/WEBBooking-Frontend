@@ -16,10 +16,12 @@ const BookingStepContact: React.FC<Props> = ({
     country: false,
     phone: false,
   });
-  const [selected, setSelected] = useState<string | null>(null);
+   const [selected, setSelected] = useState<string[]>([]);
 
   const toggleOption = (value: string) => {
-    setSelected((prev) => (prev === value ? null : value));
+    setSelected((prev) =>
+      prev.includes(value) ? prev.filter((v) => v !== value) : [...prev, value]
+    );
   };
 
   const handleContinue = () => {
@@ -66,15 +68,15 @@ const BookingStepContact: React.FC<Props> = ({
 
       <div className="option-buttons">
         <button
-          type="button"
-          className={`round-option ${selected === "guide" ? "selected" : ""}`}
+         type="button"
+          className={`round-option ${selected.includes("guide") ? "selected" : ""}`}
           onClick={() => toggleOption("guide")}
         >
           Call me to confirm  booking!
         </button>
         <button
           type="button"
-          className={`round-option ${selected === "change" ? "selected" : ""}`}
+          className={`round-option ${selected.includes("change") ? "selected" : ""}`}
           onClick={() => toggleOption("change")}
         >
           Send me an email to confirm  booking!

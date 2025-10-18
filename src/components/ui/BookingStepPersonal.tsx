@@ -15,12 +15,14 @@ const BookingStepPersonal: React.FC<Props> = ({ formData, handleChange, handleNe
     confirmEmail: false,
   });
 
-  const [selected, setSelected] = useState<string | null>(null);
-  
-    const toggleOption = (value: string) => {
-      setSelected((prev) => (prev === value ? null : value));
-    };
-  
+  const [selected, setSelected] = useState<string[]>([]);
+
+  const toggleOption = (value: string) => {
+    setSelected((prev) =>
+      prev.includes(value) ? prev.filter((v) => v !== value) : [...prev, value]
+    );
+  };
+
   const handleContinue = () => {
     const newErrors = {
       firstName: !formData.firstName,
@@ -103,15 +105,15 @@ const BookingStepPersonal: React.FC<Props> = ({ formData, handleChange, handleNe
 
       <div className="option-buttons">
         <button
-          type="button"
-          className={`round-option ${selected === "guide" ? "selected" : ""}`}
+           type="button"
+          className={`round-option ${selected.includes("guide") ? "selected" : ""}`}
           onClick={() => toggleOption("guide")}
         >
           I want to get a city guide!
         </button>
         <button
-          type="button"
-          className={`round-option ${selected === "change" ? "selected" : ""}`}
+           type="button"
+          className={`round-option ${selected.includes("change") ? "selected" : ""}`}
           onClick={() => toggleOption("change")}
         >
           The ability to change the booking (until 00.00.2025)
