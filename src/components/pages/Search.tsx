@@ -17,6 +17,7 @@ import "./Search.css";
 export default function Search() {
   const background = "/icons/layout_imgs/header-img-search.png";
   const [hotels, setHotels] = useState<HotelView[]>([]);
+  const [isFilterOpen, setIsFilterOpen] = useState(false);
   const navigate = useNavigate();
 
   const searchFeatures: FeatureItemData[] = [
@@ -38,12 +39,34 @@ export default function Search() {
     fetchAllHotels();
   }, []);
 
+  const toggleMobileFilter = () => setIsFilterOpen((s) => !s);
+
   return (
     <MainLayout background={background}>
       <ContentFeaturePanel
         features={searchFeatures}
         ariaLabel="Search page features"
       />
+
+      {/* Верхній блок - моб*/}
+      <div
+        className={`top-mobBtn-container ${isFilterOpen ? "filter-open" : ""}`}
+      >
+        <button
+          className={`see-filterpanel-btn ${isFilterOpen ? "active" : ""}`}
+          aria-label="Filters"
+          onClick={toggleMobileFilter}
+        >
+          Filters
+        </button>
+        <button
+          className="see-map-mobbtn"
+          aria-label="See the map"
+          onClick={() => navigate("/map")}
+        >
+          See the map
+        </button>
+      </div>
 
       <div className="search-page-container">
         {/* Ліва панель */}
@@ -52,10 +75,18 @@ export default function Search() {
             className="see-map-btn"
             aria-label="See the map"
             onClick={() => navigate("/map")}
-          ></button>
+          />
 
           {/* Панель фільтрів */}
-          <FilterPanel onApplyFilters={setHotels} />
+          <div className={`filter-panel-wrapper ${isFilterOpen ? "open" : ""}`}>
+            <FilterPanel
+              onApplyFilters={(newHotels) => {
+                console.log("onApplyFilters called with:", newHotels);
+                setHotels(newHotels);
+                setIsFilterOpen(false);
+              }}
+            />
+          </div>
         </div>
 
         {/* Права панель */}

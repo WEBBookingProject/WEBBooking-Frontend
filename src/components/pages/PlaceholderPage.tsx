@@ -20,7 +20,7 @@ const PlaceholderPage: React.FC<Props> = ({ title }) => {
       <img
         src="/icons/placeholder.gif"
         alt="placeholder"
-        style={{ maxWidth: "500px" }}
+        style={{ maxWidth: "500px", width: "100%", height: "auto" }}
       />
     </div>
   );
