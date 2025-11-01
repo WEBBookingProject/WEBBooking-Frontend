@@ -284,6 +284,36 @@
   background-color: #fff5f5;
 }
 
+/* Булька з помилкою */
+.error-bubble {
+  position: absolute;
+  top: -32px;
+  background-color: #e63946;
+  color: white;
+  padding: 6px 12px;
+  border-radius: 12px;
+  font-size: 13px;
+  white-space: nowrap;
+  z-index: 10;
+}
+
+.error-bubble::after {
+  content: "";
+  position: absolute;
+  bottom: -4px;
+  left: 20px;
+  width: 8px;
+  height: 8px;
+  background-color: #e63946;
+  transform: rotate(45deg);
+}
+
+.error-bubble.checkbox-error {
+  top: 50%;
+  right: -220px;
+  transform: translateY(-50%);
+}
+
 /* Адаптивність */
 @media (max-width: 900px) {
   .booking-step {
@@ -366,8 +396,8 @@
     font-weight: 700;
     margin-left: auto;
   }
-
-.name-row {
+  
+  .name-row {
     flex-direction: column; 
     align-items: center;
     justify-content: center;
@@ -403,6 +433,7 @@
     align-items: center;
     width: 100%;
     margin-bottom: 14px;
+    padding-bottom: 16px;
   }
 
   .form-hint-inline {
@@ -440,5 +471,11 @@
     padding: 14px 0;
     font-size: 15px;
     border-radius: 20px;
+  }
+
+  .error-bubble {
+  position: absolute;
+  top: -32px;
+  left: 0%;
   }
 }

@@ -136,7 +136,8 @@ const BookingPage: React.FC = () => {
       setSubmitting(true);
 
       // Конвертуємо номер телефону в число
-      const phoneNumber = parseInt(formData.phone.replace(/\D/g, ""), 10);
+      const phoneNumber = parseInt(formData.phone.replace(/\+/g, ""), 10);
+
       if (isNaN(phoneNumber)) {
         throw new Error("Invalid phone number");
       }
