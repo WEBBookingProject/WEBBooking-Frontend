@@ -43,22 +43,20 @@ export default function HotelList({ hotels }: HotelListProps) {
             {/* Середня колонка - інформація про готель */}
             <div className="hotel-col-center">
               <h3 className="hotel-name">{hotel.name}</h3>
-              {window.innerWidth <= 768 && (
-                <div
-                  className={`rating-circle ${
-                    hotel.rating > 9 ? "top-rating" : ""
-                  }`}
-                >
-                  {hotel.rating.toFixed(1)}
-                  {hotel.rating > 9 && (
-                    <img
-                      src="/icons/ui/crown.svg"
-                      alt="Top rating"
-                      className="crown-icon"
-                    />
-                  )}
-                </div>
-              )}
+              <div
+                className={`rating-circle mobile-only ${
+                  hotel.rating > 9 ? "top-rating" : ""
+                }`}
+              >
+                {hotel.rating.toFixed(1)}
+                {hotel.rating > 9 && (
+                  <img
+                    src="/icons/ui/crown.svg"
+                    alt="Top rating"
+                    className="crown-icon"
+                  />
+                )}
+              </div>
 
               {/* Зірочки рейтингу */}
               <div className="hotel-stars">
@@ -131,6 +129,7 @@ export default function HotelList({ hotels }: HotelListProps) {
               >
                 See on the map <span className="arrow">→</span>
               </button>
+
               {/* Description */}
               {hotel.description?.text && (
                 <p className="hotel-description">{hotel.description.text}</p>
@@ -139,22 +138,20 @@ export default function HotelList({ hotels }: HotelListProps) {
 
             {/* Права колонка - рейтинг зверху, ціна та кнопка внизу */}
             <div className="hotel-col-right">
-              {window.innerWidth > 768 && (
-                <div
-                  className={`rating-circle ${
-                    hotel.rating > 9 ? "top-rating" : ""
-                  }`}
-                >
-                  {hotel.rating.toFixed(1)}
-                  {hotel.rating > 9 && (
-                    <img
-                      src="/icons/ui/crown.svg"
-                      alt="Top rating"
-                      className="crown-icon"
-                    />
-                  )}
-                </div>
-              )}
+              <div
+                className={`rating-circle desktop-only ${
+                  hotel.rating > 9 ? "top-rating" : ""
+                }`}
+              >
+                {hotel.rating.toFixed(1)}
+                {hotel.rating > 9 && (
+                  <img
+                    src="/icons/ui/crown.svg"
+                    alt="Top rating"
+                    className="crown-icon"
+                  />
+                )}
+              </div>
 
               <div className="price-choose-block">
                 <div className="price-block">
