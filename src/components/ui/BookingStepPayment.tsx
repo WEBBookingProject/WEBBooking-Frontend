@@ -1,6 +1,11 @@
 import React, { useState } from "react";
 import "../ui/BookingStep.css";
-import FormErrorBubble, { validateRequired, validateNoLetters } from "../ui/FormErrorBubble";
+import FormErrorBubble, {
+  validateRequired,
+  validateNoLetters,
+  validateLength,
+  validateExpiry,
+} from "../ui/FormErrorBubble";
 
 interface Props {
   formData: any;
@@ -15,6 +20,7 @@ const BookingStepPayment: React.FC<Props> = ({ formData, handleChange, handleSub
     expiry: false,
     agreeToTerms: false,
   });
+
   const [errorMessages, setErrorMessages] = useState({
     cardType: "",
     cardNumber: "",
@@ -24,27 +30,36 @@ const BookingStepPayment: React.FC<Props> = ({ formData, handleChange, handleSub
 
   // Перевірка поля
   const validatePaymentField = (name: string, value: string) => {
-    const validators = [];
-
+    // Тип картки
     if (name === "cardType") {
-      validators.push(validateRequired(value));
+      return validateRequired(value);
     }
 
+    // Номер картки
     if (name === "cardNumber") {
-      validators.push(validateRequired(value), validateNoLetters(value));
+      const required = validateRequired(value);
+      if (!required.isValid) return required;
+
+      const noLetters = validateNoLetters(value);
+      if (!noLetters.isValid) return noLetters;
+
+      const length = validateLength(value, 16, 16);
+      if (!length.isValid) return length;
     }
 
+    // Дата дії картки
     if (name === "expiry") {
-      validators.push(validateRequired(value));
+      const required = validateRequired(value);
+      if (!required.isValid) return required;
+
+      const expiryCheck = validateExpiry(value);
+      if (!expiryCheck.isValid) return expiryCheck;
     }
 
+    // Підтвердження умов
     if (name === "agreeToTerms") {
       if (!formData.agreeToTerms)
         return { isValid: false, message: "You must agree to continue" };
-    }
-
-    for (const check of validators) {
-      if (!check.isValid) return check;
     }
 
     return { isValid: true, message: "" };
@@ -72,7 +87,7 @@ const BookingStepPayment: React.FC<Props> = ({ formData, handleChange, handleSub
     }
   };
 
-  // Підтвердження
+  // Завершення бронювання
   const handleComplete = () => {
     const newErrors: any = {};
     const newMessages: any = {};
@@ -98,7 +113,7 @@ const BookingStepPayment: React.FC<Props> = ({ formData, handleChange, handleSub
         </div>
 
         <div className="form-narrow payment-fields">
-          {/* Тип картки  */}
+          {/* Тип картки */}
           <div className={`form-group ${errors.cardType ? "has-error" : ""}`}>
             <select name="cardType" value={formData.cardType} onChange={handleFieldChange}>
               <option value="" disabled hidden>
@@ -111,7 +126,7 @@ const BookingStepPayment: React.FC<Props> = ({ formData, handleChange, handleSub
             <FormErrorBubble message={errorMessages.cardType} show={errors.cardType} />
           </div>
 
-          {/* Номер картки  */}
+          {/* Номер картки */}
           <div className={`form-group ${errors.cardNumber ? "has-error" : ""}`}>
             <input
               type="text"
@@ -119,13 +134,13 @@ const BookingStepPayment: React.FC<Props> = ({ formData, handleChange, handleSub
               value={formData.cardNumber}
               onChange={handleFieldChange}
               placeholder="0000 0000 0000 0000"
-              maxLength={19}
+              maxLength={16}
             />
             <p className="form-hint-inline">Required to confirm your booking</p>
             <FormErrorBubble message={errorMessages.cardNumber} show={errors.cardNumber} />
           </div>
 
-          {/* Дата закінчення картки */}
+          {/* Дата дії картки */}
           <div className={`form-group ${errors.expiry ? "has-error" : ""}`}>
             <input
               type="text"
@@ -140,7 +155,7 @@ const BookingStepPayment: React.FC<Props> = ({ formData, handleChange, handleSub
         </div>
       </div>
 
-      {/* Опції */}
+      {/* Угода з умовами */}
       <div className={`booking-checkbox-wrapper ${errors.agreeToTerms ? "has-error-checkbox" : ""}`}>
         <label className="custom-checkbox">
           <input
@@ -155,7 +170,7 @@ const BookingStepPayment: React.FC<Props> = ({ formData, handleChange, handleSub
         <FormErrorBubble message={errorMessages.agreeToTerms} show={errors.agreeToTerms} />
       </div>
 
-      {/* Кнопка */}
+      {/* Кнопки */}
       <div className="booking-button-wrapper" style={{ flexDirection: "column", gap: "12px" }}>
         <button type="button" onClick={handleComplete} className="btn-continue">
           COMPLETE THE BOOKING
