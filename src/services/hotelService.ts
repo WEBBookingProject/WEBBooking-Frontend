@@ -1,5 +1,5 @@
 import { HotelView } from "../models/HotelView";
-import { BookingRequest } from "../models/BookingModels";
+import { BookingRequest, ClientRequest, Client } from "../models/BookingModels";
 
 const API_BASE_URL = "https://localhost:7073/api";
 
@@ -14,6 +14,7 @@ async function fetchData<T>(url: string, options?: RequestInit): Promise<T> {
   return response.json() as Promise<T>;
 }
 
+// Для запитів, які не повертають JSON
 async function fetchWithoutJSON(url: string, options?: RequestInit): Promise<void> {
   const response = await fetch(url, {
     headers: { "Content-Type": "application/json" },
@@ -26,15 +27,18 @@ async function fetchWithoutJSON(url: string, options?: RequestInit): Promise<voi
   return;
 }
 
+// Отримання топ-10 готелів за рейтингом
 export async function getTop10Hotels(): Promise<HotelView[]> {
   return fetchData<HotelView[]>(`${API_BASE_URL}/properties/GetTop10ForRating`);
 }
 
+// Отримання готелю за його ідентифікатором
 export async function getHotelById(id: string): Promise<HotelView> {
   const url = `${API_BASE_URL}/properties/GetById?id=${encodeURIComponent(id)}`;
   return fetchData<HotelView>(url);
 }
 
+// Пошуку готелів за різними фільтрами
 export async function searchHotels(filters?: {
   minPrice?: number;
   maxPrice?: number;
@@ -65,6 +69,7 @@ export async function searchHotels(filters?: {
   return fetchData<HotelView[]>(url);
 }
 
+// Пошуку готелів за назвою та адресою
 export async function searchByNameAndAddress(name: string, address?: string): Promise<HotelView[]> {
   const params = new URLSearchParams();
   params.append("name", name);
@@ -73,6 +78,39 @@ export async function searchByNameAndAddress(name: string, address?: string): Pr
   return fetchData<HotelView[]>(url);
 }
 
+// Отримання клієнта за номером телефону
+export async function getClientByPhoneNumber(phoneNumber: number): Promise<Client | null> {
+  try {
+    const url = `${API_BASE_URL}/client/GetClientByPhoneNumber?phoneNumber=${phoneNumber}`;
+    const client = await fetchData<Client>(url);
+    return client;
+  } catch (error) {
+    return null;
+  }
+}
+
+// Створення нового клієнта
+export async function createClient(clientData: ClientRequest): Promise<Client> {
+  const params = new URLSearchParams();
+  params.append("fullName", clientData.fullName);
+  params.append("phoneNumber", clientData.phoneNumber.toString());
+  params.append("email", clientData.email);
+
+  const url = `${API_BASE_URL}/client/AddClient?${params.toString()}`;
+  
+  await fetchWithoutJSON(url, {
+    method: "POST",
+  });
+
+  const createdClient = await getClientByPhoneNumber(clientData.phoneNumber);
+  if (!createdClient) {
+    throw new Error("Failed to retrieve created client");
+  }
+  
+  return createdClient;
+}
+
+// Створення нового бронювання
 export async function createBooking(bookingData: BookingRequest): Promise<void> {
   const params = new URLSearchParams();
   

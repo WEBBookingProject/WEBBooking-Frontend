@@ -6,7 +6,7 @@ import BookingStepContact from "../ui/BookingStepContact";
 import BookingStepPayment from "../ui/BookingStepPayment";
 import BookingConfirmation from "../ui/BookingConfirmation";
 import Header from "../layouts/HeaderDetails";
-import { getHotelById, createBooking } from "../../services/hotelService";
+import { getHotelById, createBooking, getClientByPhoneNumber, createClient } from "../../services/hotelService";
 import { HotelView } from "../../models/HotelView";
 import "./BookingPage.css";
 
@@ -135,7 +135,32 @@ const BookingPage: React.FC = () => {
     try {
       setSubmitting(true);
 
-      // Підготовка даних для відправки
+      // Конвертуємо номер телефону в число
+      const phoneNumber = parseInt(formData.phone.replace(/\D/g, ""), 10);
+      if (isNaN(phoneNumber)) {
+        throw new Error("Invalid phone number");
+      }
+
+      // Перевіряємо чи існує клієнт за номером телефону
+      let clientId = "";
+      const existingClient = await getClientByPhoneNumber(phoneNumber);
+      
+      if (existingClient) {
+        // Клієнт вже існує - використовуємо його ID
+        clientId = existingClient.id;
+        console.log("Existing client found:", existingClient);
+      } else {
+        // Клієнта немає - створюємо нового
+        const newClient = await createClient({
+          fullName: `${formData.firstName} ${formData.lastName}`,
+          phoneNumber: phoneNumber,
+          email: formData.email,
+        });
+        clientId = newClient.id;
+        console.log("New client created:", newClient);
+      }
+
+      // Підготовка даних для букінгу з clientId
       const bookingData = {
         propertyId: state.propertyId,
         totalPrice: state.price,
@@ -143,19 +168,10 @@ const BookingPage: React.FC = () => {
         endDate: state.checkOutDate!,
         status: 0,
         userId: "", 
-        clientId: "", 
+        clientId: clientId, 
       };
       
-      console.log("Sending booking data:", {
-        ...bookingData,
-        customerInfo: {
-          firstName: formData.firstName,
-          lastName: formData.lastName,
-          email: formData.email,
-          country: formData.country,
-          phone: formData.phone,
-        }
-      });
+      console.log("Sending booking data:", bookingData);
       
       // Відправка на сервер
       await createBooking(bookingData);

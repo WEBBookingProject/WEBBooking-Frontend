@@ -41,7 +41,7 @@ const BookingConfirmation: React.FC<Props> = ({
     <div className="confirmation-page">
       {/* Верхня частина з логотипом */}
       <div className="confirmation-header">
-        <div className="logo">
+        <div className="logo-conf">
           <span>Hotel for </span>
           <span className="highlightCOLOR"> you.</span>
         </div>
