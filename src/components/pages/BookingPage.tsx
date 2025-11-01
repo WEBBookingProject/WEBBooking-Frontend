@@ -1,10 +1,3 @@
-// ============================================
-// Файл: src/components/pages/BookingPage.tsx
-// Компонент: BookingPage
-// Використовується: для оформлення бронювання вибраного номера
-// Опис: Містить кроки бронювання (особисті дані, контакти, оплата) та підтвердження
-// ============================================
-
 import React, { useState, useEffect } from "react";
 import { useNavigate, useLocation, useParams } from "react-router-dom";
 import BookingInfoPanel from "../ui/BookingInfoPanel";
@@ -13,26 +6,24 @@ import BookingStepContact from "../ui/BookingStepContact";
 import BookingStepPayment from "../ui/BookingStepPayment";
 import BookingConfirmation from "../ui/BookingConfirmation";
 import Header from "../layouts/HeaderDetails";
-import { getHotelById } from "../../services/hotelService";
+import { getHotelById, createBooking } from "../../services/hotelService";
 import { HotelView } from "../../models/HotelView";
 import "./BookingPage.css";
 
-// Дані форми бронювання
 interface BookingFormData {
   firstName: string;
   lastName: string;
   email: string;
+  confirmEmail: string;
+  password: string;
   country: string;
   phone: string;
   cardType: string;
   cardNumber: string;
-  expiryMonth: string;
-  expiryYear: string;
-  cvv: string;
+  expiry: string;
   agreeToTerms: boolean;
 }
 
-// Стан сторінки з даними про номер
 interface LocationState {
   roomName: string;
   hotelName: string;
@@ -41,6 +32,8 @@ interface LocationState {
   hotelImages?: string[];
   roomIndex?: number;
   rating?: number;
+  checkInDate?: string;
+  checkOutDate?: string;
 }
 
 const BookingPage: React.FC = () => {
@@ -48,49 +41,57 @@ const BookingPage: React.FC = () => {
   const navigate = useNavigate();
   const { id } = useParams<{ id: string }>();
 
-  // Стан для збереження даних
   const [state, setState] = useState<LocationState | null>(null);
   const [hotel, setHotel] = useState<HotelView | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [currentStep, setCurrentStep] = useState(1);
   const [bookingConfirmed, setBookingConfirmed] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  
   const [formData, setFormData] = useState<BookingFormData>({
     firstName: "",
     lastName: "",
     email: "",
+    confirmEmail: "",
+    password: "",
     country: "",
     phone: "",
     cardType: "",
     cardNumber: "",
-    expiryMonth: "",
-    expiryYear: "",
-    cvv: "",
+    expiry: "",
     agreeToTerms: false,
   });
 
-  // Завантаження даних з сервера
   useEffect(() => {
     const loadData = async () => {
       try {
         setLoading(true);
         
-        // Отримуємо стан з навігації
+        // Дефолтні дати: сьогодні + 7 днів на 3 ночі
+        const defaultCheckIn = new Date();
+        defaultCheckIn.setDate(defaultCheckIn.getDate() + 7);
+        const defaultCheckOut = new Date(defaultCheckIn);
+        defaultCheckOut.setDate(defaultCheckOut.getDate() + 3);
+        
         if (location.state) {
           const locationState = location.state as LocationState;
-          setState(locationState);
           
-          // Завантажуємо повні дані готелю з сервера
+          // Дефолтні дати
+          setState({
+            ...locationState,
+            checkInDate: locationState.checkInDate || defaultCheckIn.toISOString(),
+            checkOutDate: locationState.checkOutDate || defaultCheckOut.toISOString(),
+          });
+          
           if (id) {
             const hotelData = await getHotelById(id);
             setHotel(hotelData);
           }
         } else if (id) {
-          // Якщо немає state, завантажуємо з сервера
           const hotelData = await getHotelById(id);
           setHotel(hotelData);
           
-          // Створюємо базовий state
           setState({
             roomName: "Standard Room",
             hotelName: hotelData.name,
@@ -99,6 +100,8 @@ const BookingPage: React.FC = () => {
             hotelImages: hotelData.photos,
             roomIndex: 0,
             rating: hotelData.rating,
+            checkInDate: defaultCheckIn.toISOString(),
+            checkOutDate: defaultCheckOut.toISOString(),
           });
         }
         
@@ -113,7 +116,6 @@ const BookingPage: React.FC = () => {
     loadData();
   }, [location.state, id]);
 
-  // Зміна значень у формі
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value, type } = e.target;
     setFormData(prev => ({
@@ -122,32 +124,52 @@ const BookingPage: React.FC = () => {
     }));
   };
 
-  // Навігація між кроками
   const handleNext = () => setCurrentStep(prev => prev + 1);
 
-  // Підтвердження бронювання
   const handleSubmit = async () => {
+    if (!state) {
+      alert("Booking information is missing");
+      return;
+    }
+
     try {
-      // Тут можна додати відправку даних на сервер
+      setSubmitting(true);
+
+      // Підготовка даних для відправки
       const bookingData = {
-        ...formData,
-        roomName: state?.roomName,
-        hotelName: state?.hotelName,
-        propertyId: state?.propertyId,
-        price: state?.price,
-        roomIndex: state?.roomIndex,
+        propertyId: state.propertyId,
+        totalPrice: state.price,
+        startDate: state.checkInDate!,
+        endDate: state.checkOutDate!,
+        status: 0,
+        userId: "", 
+        clientId: "", 
       };
       
-      console.log("Booking data:", bookingData);
+      console.log("Sending booking data:", {
+        ...bookingData,
+        customerInfo: {
+          firstName: formData.firstName,
+          lastName: formData.lastName,
+          email: formData.email,
+          country: formData.country,
+          phone: formData.phone,
+        }
+      });
       
+      // Відправка на сервер
+      await createBooking(bookingData);
+      
+      console.log("Booking created successfully!");
       setBookingConfirmed(true);
-    } catch (err) {
+      setSubmitting(false);
+    } catch (err: any) {
       console.error("Error submitting booking:", err);
-      alert("Failed to submit booking. Please try again.");
+      setSubmitting(false);
+      alert(`Failed to create booking: ${err.message || "Please try again."}`);
     }
   };
 
-  // Закриття вікна підтвердження і повернення на сторінку готелю
   const handleCloseConfirmation = () => {
     if (id) {
       navigate(`/hotel/${id}`);
@@ -156,7 +178,6 @@ const BookingPage: React.FC = () => {
     }
   };
 
-  // Кнопка повернення на сторінку готелю
   const handleClose = () => {
     if (id) {
       navigate(`/hotel/${id}`);
@@ -165,7 +186,6 @@ const BookingPage: React.FC = () => {
     }
   };
 
-  // Рендер потрібного кроку форми
   const renderStep = () => {
     switch (currentStep) {
       case 1:
@@ -197,7 +217,6 @@ const BookingPage: React.FC = () => {
     }
   };
 
-  // Відображення стану завантаження
   if (loading) {
     return (
       <>
@@ -207,7 +226,6 @@ const BookingPage: React.FC = () => {
     );
   }
 
-  // Відображення помилки
   if (error || !state) {
     return (
       <>
@@ -222,12 +240,10 @@ const BookingPage: React.FC = () => {
 
   const { roomName, hotelName, hotelImages = [], roomIndex = 0, rating } = state;
 
-  // Основна структура сторінки
   return (
     <>
       <Header />
       <div className="booking-page" style={{ position: "relative" }}>
-        {/* Кнопка повернення до готелю */}
         <button
           onClick={handleClose}
           className="close-button"
@@ -236,7 +252,6 @@ const BookingPage: React.FC = () => {
           ×
         </button>
 
-        {/* Панель бронювання або підтвердження */}
         {!bookingConfirmed ? (
           <>
             <BookingInfoPanel
@@ -246,7 +261,13 @@ const BookingPage: React.FC = () => {
               roomImage={hotelImages[roomIndex]}
               roomIndex={roomIndex}
             />
-            <div className="booking-form-container">{renderStep()}</div>
+            <div className="booking-form-container">
+              {submitting ? (
+                <div className="loading">Processing your booking...</div>
+              ) : (
+                renderStep()
+              )}
+            </div>
           </>
         ) : (
           <BookingConfirmation

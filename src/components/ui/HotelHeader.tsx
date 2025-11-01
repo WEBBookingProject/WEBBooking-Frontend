@@ -4,6 +4,7 @@
 // ============================================
 
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import './HotelHeader.css';
 
 interface HotelHeaderProps {
@@ -13,6 +14,12 @@ interface HotelHeaderProps {
 }
 
 const HotelHeader: React.FC<HotelHeaderProps> = ({ name, rating, onBack }) => {
+  const navigate = useNavigate();
+  
+    const handleBack = () => {
+    navigate('/search');
+  };
+
   // Рендер зірок за рейтингом
   const renderStars = (rating: number) => {
     const fullStars = Math.floor(rating);
@@ -34,11 +41,15 @@ const HotelHeader: React.FC<HotelHeaderProps> = ({ name, rating, onBack }) => {
   return (
     <header className="hotel-header">
       {/* Кнопка "Назад" */}
-      {onBack && (
+      {/* {onBack && (
         <button className="back-btn" onClick={onBack}>
           <img src="/icons/ui/back.svg" alt="Back" className="back-icon" />
         </button>
-      )}
+      )} */}
+
+      <button className="back-btn" onClick={handleBack}>
+        <img src="/icons/ui/back.svg" alt="Back" className="back-icon" />
+      </button>
 
       {/* Назва, рейтинг і кнопка Check */}
       <div className="hotel-header-main">

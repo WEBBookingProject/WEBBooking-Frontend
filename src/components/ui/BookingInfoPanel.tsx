@@ -82,7 +82,7 @@ const BookingInfoPanel: React.FC<Props> = ({
               alt="Bed"
               className="facility-icon" 
             />
-            <span>{sleepingArrangements}</span>
+            <span>Bed: {sleepingArrangements}</span>
           </div>
 
           <div className="room-info-block">
@@ -91,7 +91,7 @@ const BookingInfoPanel: React.FC<Props> = ({
               alt="Guests"
               className="facility-icon" 
             />
-            <span>{maxGuests} guests</span>
+            <span>Guests: maximum {maxGuests}</span>
           </div>
 
           {hotel?.description && (
