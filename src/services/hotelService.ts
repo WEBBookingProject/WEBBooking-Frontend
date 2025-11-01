@@ -1,4 +1,5 @@
 import { HotelView } from "../models/HotelView";
+import { BookingRequest } from "../models/BookingModels";
 
 const API_BASE_URL = "https://localhost:7073/api";
 
@@ -11,6 +12,18 @@ async function fetchData<T>(url: string, options?: RequestInit): Promise<T> {
     throw new Error(`Request failed: ${response.status}`);
   }
   return response.json() as Promise<T>;
+}
+
+async function fetchWithoutJSON(url: string, options?: RequestInit): Promise<void> {
+  const response = await fetch(url, {
+    headers: { "Content-Type": "application/json" },
+    ...options,
+  });
+  if (!response.ok) {
+    const errorText = await response.text();
+    throw new Error(`Request failed: ${response.status} - ${errorText}`);
+  }
+  return;
 }
 
 export async function getTop10Hotels(): Promise<HotelView[]> {
@@ -58,4 +71,27 @@ export async function searchByNameAndAddress(name: string, address?: string): Pr
   if (address) params.append("address", address);
   const url = `${API_BASE_URL}/properties/SearchByNameAndAddress?${params.toString()}`;
   return fetchData<HotelView[]>(url);
+}
+
+export async function createBooking(bookingData: BookingRequest): Promise<void> {
+  const params = new URLSearchParams();
+  
+  params.append("propertyId", bookingData.propertyId);
+  params.append("totalPrice", bookingData.totalPrice.toString());
+  params.append("startDate", bookingData.startDate);
+  params.append("endDate", bookingData.endDate);
+  params.append("status", (bookingData.status ?? 0).toString()); 
+  
+  if (bookingData.userId) {
+    params.append("userId", bookingData.userId);
+  }
+  if (bookingData.clientId) {
+    params.append("clientId", bookingData.clientId);
+  }
+
+  const url = `${API_BASE_URL}/booking/CreateNewBooking?${params.toString()}`;
+
+  await fetchWithoutJSON(url, {
+    method: "POST",
+  });
 }

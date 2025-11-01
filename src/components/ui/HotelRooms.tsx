@@ -48,12 +48,12 @@ const HotelRooms: React.FC<Props> = ({ hotel}) => {
 
               <div className="room-info-block">
                 <img src="/icons/ui/bedroom.svg" alt="Bed" className="facility-icon"  />
-                <span>{hotel.description?.sleepingArrangements || "—"} beds</span>
+                <span>Bed: {hotel.description?.sleepingArrangements || "—"}</span>
               </div>
 
               <div className="room-info-block">
                 <img src="/icons/ui/profile2user.svg" alt="Guest" className="facility-icon" />
-                <span>{hotel.maxGuests} guests</span>
+                <span>Guests: maximum {hotel.maxGuests} </span>
               </div>
 
               <div className="hotel-facilities">
