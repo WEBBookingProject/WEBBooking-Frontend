@@ -23,15 +23,18 @@
   margin-bottom: 24px;
 }
 
+.placeholder-image img {
+ width: 400px;
+  height: auto;
+  overflow: hidden;
+}
+
+
+@media (max-width: 768px) {
 .placeholder-image {
-  width: 500px;
-  height: 500px;
-  background: #ddd;
-  border-radius: 12px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: var(--color-black);
-  font-weight: 600;
-  margin: 0 auto 24px auto;
+  max-width: 500px;
+  width: 100%;
+  height: auto;
+}
+
 }

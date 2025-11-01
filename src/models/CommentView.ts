@@ -1,8 +1,9 @@
 export interface CommentView {
-  id: number;
-  avatarUrl: string; 
-  name: string;     
-  hotelName: string; 
-  daysAgo: number;  
-  text: string;   
+  id: number;          
+  avatarUrl: string;   
+  name: string;        
+  hotelName: string;   
+  daysAgo: number;     
+  text: string;
+  overallRating?: number; 
 }

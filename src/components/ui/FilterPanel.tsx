@@ -154,7 +154,13 @@ export default function FilterPanel({ onApplyFilters }: FilterPanelProps) {
 
       {/* Apply button */}
       <div className="filter-section apply-button-container">
-        <button className="apply-btn" onClick={applyFilters}>
+        <button
+          className="apply-btn"
+          onClick={() => {
+            applyFilters();
+            window.scrollTo({ top: 200, behavior: "smooth" });
+          }}
+        >
           Apply
         </button>
       </div>

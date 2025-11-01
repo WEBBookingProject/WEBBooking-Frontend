@@ -117,7 +117,7 @@ html, body {
   }
   
   .logo {
-    font-size: 20px;
+    font-size: 18px;
   }
   
   .header-actions .header-btn {
@@ -148,14 +148,20 @@ html, body {
   }
   
   .mobile-account-btn .user-icon {
-    width: 32px;
-    height: 32px;
+    width: 18px;
+    height: 18px;
     border-radius: 50%;
     object-fit: cover;
     margin-right: -8px;
     background-color: var(--color-gray)
   }
+
+  .lang-btn {
   
+  width: 18px;
+  height: 18px;
+ 
+}
   .header-img {
     height: 150px;
   }

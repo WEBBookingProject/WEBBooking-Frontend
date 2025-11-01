@@ -16,10 +16,11 @@ import ReviewsPanel from "../ui/ReviewsPanel";
 import SafeWithUs from "../ui/SafeWithUs";
 import RegularPanel from "../ui/RegularPanel";
 import RegisterCTA from "../ui/RegisterCTA";
+import { CommentView } from "../../models/CommentView";
 
 export default function Home() {
   const [hotels, setHotels] = useState<HotelView[]>([]);
-  const [comments, setComments] = useState<any[]>([]);
+  const [comments, setComments] = useState<CommentView[]>([]);
   const background = "/icons/layout_imgs/header-img@2x.png";
 
   const homeFeatures: FeatureItemData[] = [
@@ -140,7 +141,7 @@ function HotelCard({ hotel }: { hotel: HotelView }) {
             </span>
           ))}
         </div>
-        <div className="hotel-distance">Distance to center: approx.</div>
+        <div className="hotel-distance">Category: {hotel.category} </div>
         <div className="hotel-price">${hotel.priceForDay} / night</div>
       </div>
     </div>
